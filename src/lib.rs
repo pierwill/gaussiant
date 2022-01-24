@@ -1,11 +1,11 @@
 //! [Gaussian integers](https://en.wikipedia.org/wiki/Gaussian_integer).
 
-use num_complex::Complex;
+pub use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
 
 /// A Gaussian integer.
 #[derive(Debug, PartialEq, Eq)]
-pub struct GaussianInt<T: PrimInt>(Complex<T>);
+pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
 impl<T: PrimInt> GaussianInt<T> {
     pub fn new(r: T, i: T) -> Self {
@@ -42,7 +42,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     ///    is a prime number of the form 4*n* + 3
     ///    (with *n* a nonnegative integer)
     /// 2. both *a* and *b* are nonzero,
-    ///    and *a*^2 + *b*^2 is a prime number
+    ///    and *a*² + *b*² is a prime number
     ///    (which will not be of the form 4*n* + 3).
     ///
     /// [Gaussian primality]: https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes
