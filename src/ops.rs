@@ -21,3 +21,10 @@ impl<T: PrimInt> std::ops::Mul for GaussianInt<T> {
         Self::from(self.0 * other.0)
     }
 }
+
+impl<T: PrimInt> std::ops::Div for GaussianInt<T> {
+    type Output = Self;
+    fn div(self, other: Self) -> Self::Output {
+        Self::from(self.0 / other.0)
+    }
+}
