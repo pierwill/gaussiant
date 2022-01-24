@@ -2,6 +2,10 @@
 edition = "2021"
 name = "gaussiant"
 version = "0.1.0"
+description = "Gaussian integers"
+repository = "https://github.com/pierwill/gaussiant"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 num-complex = "0.4.0"
