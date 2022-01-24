@@ -10,21 +10,21 @@ pub struct GaussianInt<T: PrimInt>(Complex<T>);
 
 impl<T: PrimInt> GaussianInt<T> {
     pub fn new(r: T, i: T) -> Self {
-        GaussianInt(Complex::new(r, i))
+        Self(Complex::new(r, i))
     }
 }
 
 impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
     type Output = Self;
     fn add(self, other: Self) -> Self::Output {
-        GaussianInt::new(self.0.re + other.0.re, self.0.im + other.0.im)
+        Self::new(self.0.re + other.0.re, self.0.im + other.0.im)
     }
 }
 
 impl<T: PrimInt> std::ops::Sub for GaussianInt<T> {
     type Output = Self;
     fn sub(self, other: Self) -> Self::Output {
-        GaussianInt::new(self.0.re - other.0.re, self.0.im - other.0.im)
+        Self::new(self.0.re - other.0.re, self.0.im - other.0.im)
     }
 }
 
