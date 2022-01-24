@@ -1,40 +1,24 @@
 //! [Gaussian integers](https://en.wikipedia.org/wiki/Gaussian_integer).
+#![deny(missing_docs)]
 
 pub use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
+
+mod ops;
 
 /// A Gaussian integer.
 #[derive(Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
 impl<T: PrimInt> GaussianInt<T> {
+    #[allow(missing_docs)]
     pub fn new(r: T, i: T) -> Self {
         Self(Complex::new(r, i))
     }
 
+    /// Returns zero as a [`GaussianInt`].
     pub fn zero() -> Self {
         Self(Complex::new(T::zero(), T::zero()))
-    }
-}
-
-impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
-    type Output = Self;
-    fn add(self, other: Self) -> Self::Output {
-        Self::new(self.0.re + other.0.re, self.0.im + other.0.im)
-    }
-}
-
-impl<T: PrimInt> std::ops::Sub for GaussianInt<T> {
-    type Output = Self;
-    fn sub(self, other: Self) -> Self::Output {
-        Self::new(self.0.re - other.0.re, self.0.im - other.0.im)
-    }
-}
-
-impl<T: PrimInt> std::ops::Mul for GaussianInt<T> {
-    type Output = Self;
-    fn mul(self, other: Self) -> Self::Output {
-        Self::from(self.0 * other.0)
     }
 }
 
