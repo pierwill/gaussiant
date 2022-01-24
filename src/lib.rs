@@ -1,6 +1,5 @@
 //! [Gaussian integers](https://en.wikipedia.org/wiki/Gaussian_integer).
 
-#[allow(dead_code)]
 use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
 
