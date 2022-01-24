@@ -103,7 +103,15 @@ mod tests {
 
     #[test]
     fn is_gaussian_prime() {
+        let c = GaussianInt::new(2, 0);
+        assert_eq!(c.is_gaussian_prime(), false);
         let c = GaussianInt::new(3, 0);
+        assert_eq!(c.is_gaussian_prime(), true);
+        let c = GaussianInt::new(5, 0);
+        assert_eq!(c.is_gaussian_prime(), false);
+        let c = GaussianInt::new(7, 0);
+        assert_eq!(c.is_gaussian_prime(), true);
+        let c = GaussianInt::new(11, 0);
         assert_eq!(c.is_gaussian_prime(), true);
     }
 }
