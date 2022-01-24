@@ -29,6 +29,11 @@ impl<T: PrimInt> std::ops::Sub for GaussianInt<T> {
 }
 
 impl<T: PrimInt + Signed> GaussianInt<T> {
+    /// Returns the complex conjugate.
+    pub fn conj(&self) -> Self {
+        Self::new(self.0.re, -self.0.im)
+    }
+
     /// Test for [Gaussian primality](https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes).
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
@@ -135,6 +140,13 @@ mod tests {
     fn from_isize() {
         let c = GaussianInt::new(5, 0);
         assert_eq!(5isize, c.into());
+    }
+
+    #[test]
+    fn conjugate() {
+        let c: GaussianInt<i32> = GaussianInt::new(5, 5);
+        let conj: GaussianInt<i32> = GaussianInt::new(5, -5);
+        assert_eq!(c.conj(), conj);
     }
 
     #[test]
