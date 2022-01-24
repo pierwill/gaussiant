@@ -82,6 +82,12 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     }
 }
 
+impl<T: PrimInt> From<Complex<T>> for GaussianInt<T> {
+    fn from(g: Complex<T>) -> Self {
+        Self(g)
+    }
+}
+
 impl<T: PrimInt> From<GaussianInt<T>> for i32 {
     fn from(g: GaussianInt<T>) -> Self {
         g.0.re.to_i32().unwrap()
@@ -111,6 +117,13 @@ mod tests {
     fn new() {
         let c = GaussianInt::new(1, 1);
         assert_eq!(c.0, Complex::new(1, 1));
+    }
+
+    #[test]
+    fn from_complex() {
+        let c = Complex::new(5, 5);
+        let g = GaussianInt::new(5, 5);
+        assert_eq!(GaussianInt::from(c), g);
     }
 
     #[test]
