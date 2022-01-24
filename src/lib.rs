@@ -11,6 +11,10 @@ impl<T: PrimInt> GaussianInt<T> {
     pub fn new(r: T, i: T) -> Self {
         Self(Complex::new(r, i))
     }
+
+    pub fn zero() -> Self {
+        Self(Complex::new(T::zero(), T::zero()))
+    }
 }
 
 impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
