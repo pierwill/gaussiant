@@ -95,4 +95,13 @@ mod tests {
         let c = GaussianInt::new(11, 0);
         assert_eq!(c.is_gaussian_prime(), true);
     }
+
+    #[test]
+    fn is_rational() {
+        let c = GaussianInt::new(7, 0);
+        assert!(c.is_rational());
+
+        let c = GaussianInt::new(5, 1);
+        assert!(!c.is_rational());
+    }
 }

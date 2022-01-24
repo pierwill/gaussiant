@@ -81,6 +81,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 
         condition_1 || condition_2
     }
+
+    /// Test whether a Gaussian integer is a rational integer.
+    pub fn is_rational(&self) -> bool {
+        self.0.im == T::zero()
+    }
 }
 
 impl<T: PrimInt> From<Complex<T>> for GaussianInt<T> {
