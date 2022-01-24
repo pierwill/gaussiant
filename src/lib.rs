@@ -31,6 +31,13 @@ impl<T: PrimInt> std::ops::Sub for GaussianInt<T> {
     }
 }
 
+impl<T: PrimInt> std::ops::Mul for GaussianInt<T> {
+    type Output = Self;
+    fn mul(self, other: Self) -> Self::Output {
+        Self::from(self.0 * other.0)
+    }
+}
+
 impl<T: PrimInt + Signed> GaussianInt<T> {
     /// Returns the complex conjugate.
     pub fn conj(&self) -> Self {
@@ -146,6 +153,17 @@ mod tests {
         let c1 = GaussianInt::new(-15, 3);
         let c2 = GaussianInt::new(8, 7);
         assert_eq!(c1 - c2, GaussianInt::new(-23, -4));
+    }
+
+    #[test]
+    fn multiplication() {
+        let c1 = GaussianInt::new(1, 1);
+        let c2 = GaussianInt::new(1, -1);
+        assert_eq!(c1 * c2, GaussianInt::new(2, 0));
+
+        let c1 = GaussianInt::new(3, 2);
+        let c2 = GaussianInt::new(2, 3);
+        assert_eq!(c1 * c2, GaussianInt::new(0, 13));
     }
 
     #[test]
