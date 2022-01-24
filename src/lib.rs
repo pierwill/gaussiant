@@ -16,9 +16,15 @@ impl<T: PrimInt> GaussianInt<T> {
 
 impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
     type Output = Self;
-
     fn add(self, other: Self) -> Self::Output {
         GaussianInt::new(self.0.re + other.0.re, self.0.im + other.0.im)
+    }
+}
+
+impl<T: PrimInt> std::ops::Sub for GaussianInt<T> {
+    type Output = Self;
+    fn sub(self, other: Self) -> Self::Output {
+        GaussianInt::new(self.0.re - other.0.re, self.0.im - other.0.im)
     }
 }
 
@@ -106,6 +112,17 @@ mod tests {
         let c1 = GaussianInt::new(-15, 3);
         let c2 = GaussianInt::new(8, 7);
         assert_eq!(c1 + c2, GaussianInt::new(-7, 10));
+    }
+
+    #[test]
+    fn subtraction() {
+        let c1 = GaussianInt::new(1, 1);
+        let c2 = GaussianInt::new(1, 1);
+        assert_eq!(c1 - c2, GaussianInt::new(0, 0));
+
+        let c1 = GaussianInt::new(-15, 3);
+        let c2 = GaussianInt::new(8, 7);
+        assert_eq!(c1 - c2, GaussianInt::new(-23, -4));
     }
 
     #[test]
