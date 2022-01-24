@@ -34,16 +34,19 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         Self::new(self.0.re, -self.0.im)
     }
 
-    /// Test for [Gaussian primality](https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes).
+    /// Test for [Gaussian primality].
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
     ///
     /// 1. one of *a*, *b* is zero,
-    ///   and the absolute value of the other
-    ///   is a prime number of the form 4*n* + 3
-    ///   (with *n* a nonnegative integer)
-    /// 2. both are nonzero and *a*^2 + *b*^2 is a prime number
-    ///   (which will not be of the form 4*n* + 3).
+    ///    and the absolute value of the other
+    ///    is a prime number of the form 4*n* + 3
+    ///    (with *n* a nonnegative integer)
+    /// 2. both *a* and *b* are nonzero,
+    ///    and *a*^2 + *b*^2 is a prime number
+    ///    (which will not be of the form 4*n* + 3).
+    ///
+    /// [Gaussian primality]: https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes
     pub fn is_gaussian_prime(&self) -> bool {
         let a = self.0.re;
         let b = self.0.im;
