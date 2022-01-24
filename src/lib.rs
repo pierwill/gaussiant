@@ -16,16 +16,25 @@ impl<T: PrimInt> GaussianInt<T> {
     }
 }
 
-impl<T: PrimInt> From<GaussianInt<T>> for u32 {
+impl<T: PrimInt> From<GaussianInt<T>> for i32 {
     fn from(g: GaussianInt<T>) -> Self {
-        g.0.re.to_u32().unwrap()
+        g.0.re.to_i32().unwrap()
     }
 }
 
-impl<T: PrimInt> From<GaussianInt<T>> for usize {
+impl<T: PrimInt> From<GaussianInt<T>> for isize {
     fn from(g: GaussianInt<T>) -> Self {
-        g.0.re.to_usize().unwrap()
+        g.0.re.to_isize().unwrap()
     }
+}
+
+pub fn is_prime(number: i32) -> bool {
+    for i in 2..(number / 2 + 1) {
+        if number % i == 0 {
+            return false;
+        }
+    }
+    return number > 1;
 }
 
 #[cfg(test)]
@@ -41,12 +50,12 @@ mod tests {
     #[test]
     fn from_u32() {
         let c = GaussianInt::new(5, 0);
-        assert_eq!(5u32, c.into());
+        assert_eq!(5i32, c.into());
     }
 
     #[test]
     fn from_usize() {
         let c = GaussianInt::new(5, 0);
-        assert_eq!(5u32, c.into());
+        assert_eq!(5i32, c.into());
     }
 }
