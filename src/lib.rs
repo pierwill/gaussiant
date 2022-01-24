@@ -12,7 +12,7 @@ use num_traits::{PrimInt, Signed};
 mod ops;
 
 /// A Gaussian integer.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
 impl<T: PrimInt> GaussianInt<T> {
@@ -31,6 +31,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     /// Returns the complex conjugate.
     pub fn conj(&self) -> Self {
         Self::new(self.0.re, -self.0.im)
+    }
+
+    /// Returns the norm.
+    pub fn norm(self) -> Self {
+        self * self.conj()
     }
 
     /// Test for [Gaussian primality].
@@ -142,6 +147,12 @@ mod tests {
         let c1 = GaussianInt::new(-15, 3);
         let c2 = GaussianInt::new(8, 7);
         assert_eq!(c1 - c2, GaussianInt::new(-23, -4));
+    }
+
+    #[test]
+    fn norm() {
+        let c = GaussianInt::new(1, 1);
+        assert_eq!(c.norm(), GaussianInt::new(2, 0));
     }
 
     #[test]
