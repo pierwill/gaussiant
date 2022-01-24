@@ -92,7 +92,7 @@ impl<T: PrimInt> From<GaussianInt<T>> for isize {
     }
 }
 
-pub fn is_prime(number: i32) -> bool {
+fn is_prime(number: i32) -> bool {
     for i in 2..(number / 2 + 1) {
         if number % i == 0 {
             return false;
