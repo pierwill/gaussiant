@@ -9,7 +9,7 @@
 #![deny(missing_docs)]
 #![allow(clippy::needless_return)]
 
-pub use num_complex::Complex;
+use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
 
 mod ops;
