@@ -8,6 +8,9 @@ mod tests {
     fn new() {
         let c = GaussianInt::new(1, 1);
         assert_eq!(c.0, Complex::new(1, 1));
+
+        let c: GaussianInt<i128> = GaussianInt::new(1, i128::pow(2, 100));
+        assert_eq!(c.0, Complex::new(1, i128::pow(2, 100)));
     }
 
     #[test]
