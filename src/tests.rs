@@ -71,6 +71,17 @@ mod tests {
     }
 
     #[test]
+    fn remainder() {
+        let c1 = GaussianInt::new(2, 2);
+        let c2 = GaussianInt::new(2, 2);
+        assert_eq!(c1 % c2, GaussianInt::zero());
+
+        let c1 = GaussianInt::new(1, 2);
+        let c2 = GaussianInt::new(3, 4);
+        assert!(c1 % c2 != GaussianInt::zero());
+    }
+
+    #[test]
     fn from_i32() {
         let c = GaussianInt::new(5, 0);
         assert_eq!(5i32, c.into());

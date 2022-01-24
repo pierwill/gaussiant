@@ -28,3 +28,10 @@ impl<T: PrimInt> std::ops::Div for GaussianInt<T> {
         Self::from(self.0 / other.0)
     }
 }
+
+impl<T: PrimInt> std::ops::Rem for GaussianInt<T> {
+    type Output = Self;
+    fn rem(self, other: Self) -> Self::Output {
+        Self::from(self.0 % other.0)
+    }
+}
