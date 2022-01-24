@@ -2,7 +2,10 @@
 //!
 //! A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
 //!
+//! The centerpiece of this crate is a method to test for a [Gaussian prime].
+//!
 //! [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
+//! [Gaussian prime]: crate::GaussianInt#method.is_gaussian_prime
 #![deny(missing_docs)]
 #![allow(clippy::needless_return)]
 
