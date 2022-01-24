@@ -1,4 +1,8 @@
-//! [Gaussian integers](https://en.wikipedia.org/wiki/Gaussian_integer).
+//! Gaussian integers in Rust.
+//!
+//! A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
+//!
+//! [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
 #![deny(missing_docs)]
 #![allow(clippy::needless_return)]
 
