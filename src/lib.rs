@@ -90,15 +90,15 @@ mod tests {
     }
 
     #[test]
-    fn from_u32() {
+    fn from_i32() {
         let c = GaussianInt::new(5, 0);
         assert_eq!(5i32, c.into());
     }
 
     #[test]
-    fn from_usize() {
+    fn from_isize() {
         let c = GaussianInt::new(5, 0);
-        assert_eq!(5i32, c.into());
+        assert_eq!(5isize, c.into());
     }
 
     #[test]
