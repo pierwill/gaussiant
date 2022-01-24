@@ -55,8 +55,6 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         let b = self.0.im;
 
         let condition_1 = match (a.is_zero(), b.is_zero()) {
-            (true, true) => false,
-            (false, false) => false,
             (true, false) => {
                 let other = b.to_i32().unwrap();
                 is_prime(other) && (other - 3) % 4 == 0
@@ -65,6 +63,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
                 let other = a.to_i32().unwrap();
                 is_prime(other) && (other - 3) % 4 == 0
             }
+            _ => false,
         };
 
         let condition_2 = match (a.is_zero(), b.is_zero()) {
