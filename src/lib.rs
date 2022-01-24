@@ -5,7 +5,7 @@ use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
 
 /// A Gaussian integer.
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(Complex<T>);
 
 impl<T: PrimInt> GaussianInt<T> {
@@ -14,16 +14,24 @@ impl<T: PrimInt> GaussianInt<T> {
     }
 }
 
+impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
+    type Output = Self;
+
+    fn add(self, other: Self) -> Self::Output {
+        GaussianInt::new(self.0.re + other.0.re, self.0.im + other.0.im)
+    }
+}
+
 impl<T: PrimInt + Signed> GaussianInt<T> {
     /// Test for [Gaussian primality](https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes).
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
     ///
-    /// - one of *a*, *b* is zero,
+    /// 1. one of *a*, *b* is zero,
     ///   and the absolute value of the other
     ///   is a prime number of the form 4*n* + 3
     ///   (with *n* a nonnegative integer)
-    /// - both are nonzero and *a*^2 + *b*^2 is a prime number
+    /// 2. both are nonzero and *a*^2 + *b*^2 is a prime number
     ///   (which will not be of the form 4*n* + 3).
     pub fn is_gaussian_prime(&self) -> bool {
         let a = self.0.re;
@@ -87,6 +95,17 @@ mod tests {
     fn new() {
         let c = GaussianInt::new(1, 1);
         assert_eq!(c.0, Complex::new(1, 1));
+    }
+
+    #[test]
+    fn addition() {
+        let c1 = GaussianInt::new(1, 1);
+        let c2 = GaussianInt::new(1, 1);
+        assert_eq!(c1 + c2, GaussianInt::new(2, 2));
+
+        let c1 = GaussianInt::new(-15, 3);
+        let c2 = GaussianInt::new(8, 7);
+        assert_eq!(c1 + c2, GaussianInt::new(-7, 10));
     }
 
     #[test]
