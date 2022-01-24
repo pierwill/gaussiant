@@ -41,7 +41,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         self * self.conj()
     }
 
-    /// Test for [Gaussian primality].
+    /// Tests for [Gaussian primality].
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
     ///
@@ -85,7 +85,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         condition_1 || condition_2
     }
 
-    /// Test whether a Gaussian integer is a rational integer.
+    /// Tests whether a Gaussian integer is a rational integer.
     pub fn is_rational(&self) -> bool {
         self.0.im == T::zero()
     }
