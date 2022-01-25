@@ -45,11 +45,6 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         self * self.conj()
     }
 
-    /// Tests whether a Gaussian integer is a rational integer.
-    pub fn is_rational(&self) -> bool {
-        self.0.im == T::zero()
-    }
-
     /// Returns `true` if `self` is a divisor of `other`.
     pub fn is_divisor_of(&self, other: Self) -> bool {
         if !(other.0.re != T::zero() && other.0.im != T::zero()) {
