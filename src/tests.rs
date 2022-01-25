@@ -82,6 +82,17 @@ mod tests {
     }
 
     #[test]
+    fn is_divisor_of() {
+        let five = GaussianInt::new(5, 0);
+        assert!(GaussianInt::new(1, 0).is_divisor_of(five));
+        assert!(GaussianInt::new(1, 2).is_divisor_of(five));
+        assert!(GaussianInt::new(1, -2).is_divisor_of(five));
+        assert!(GaussianInt::new(2, 1).is_divisor_of(five));
+        assert!(GaussianInt::new(2, -1).is_divisor_of(five));
+        assert!(five.is_divisor_of(five));
+    }
+
+    #[test]
     fn from_i32() {
         let c = GaussianInt::new(5, 0);
         assert_eq!(5i32, c.into());

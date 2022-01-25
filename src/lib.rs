@@ -43,6 +43,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         self * self.conj()
     }
 
+    /// Returns `true` if `self` is a divisor of `other`.
+    pub fn is_divisor_of(&self, other: Self) -> bool {
+        (other % *self) == Self::zero()
+    }
+
     /// Tests for [Gaussian primality].
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
