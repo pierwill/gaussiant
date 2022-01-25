@@ -52,7 +52,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 
     /// Returns `true` if `self` is a divisor of `other`.
     pub fn is_divisor_of(&self, other: Self) -> bool {
-        (other % *self) == Self::zero()
+        if !(other.0.re != T::zero() && other.0.im != T::zero()) {
+            (other % *self) == Self::zero()
+        } else {
+            false
+        }
     }
 
     /// Tests whether a Gaussian integer is a rational integer.
