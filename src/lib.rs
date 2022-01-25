@@ -48,6 +48,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         (other % *self) == Self::zero()
     }
 
+    /// Tests whether a Gaussian integer is a rational integer.
+    pub fn is_rational(&self) -> bool {
+        self.0.im == T::zero()
+    }
+
     /// Tests for [Gaussian primality].
     ///
     /// A Gaussian integer *a* + *b*i is a *Gaussian prime* if and only if either:
@@ -91,11 +96,8 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 
         condition_1 || condition_2
     }
+}
 
-    /// Tests whether a Gaussian integer is a rational integer.
-    pub fn is_rational(&self) -> bool {
-        self.0.im == T::zero()
-    }
 /// Returs an iterator of all Gaussian primes with integer parts below *n*.
 pub fn get_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
