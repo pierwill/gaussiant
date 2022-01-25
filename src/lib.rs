@@ -22,17 +22,6 @@ mod ops;
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
-impl<T: PrimInt> fmt::Display for GaussianInt<T> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "{}+{}i",
-            self.0.re.to_isize().unwrap(),
-            self.0.im.to_isize().unwrap()
-        )
-    }
-}
-
 impl<T: PrimInt> GaussianInt<T> {
     #[allow(missing_docs)]
     pub fn new(r: T, i: T) -> Self {
@@ -169,6 +158,27 @@ fn is_prime(number: i32) -> bool {
         }
     }
     return number > 1;
+}
+
+impl<T: PrimInt> fmt::Display for GaussianInt<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let zero = T::zero();
+        if self.0.im < zero {
+            write!(
+                f,
+                "{}{}i",
+                self.0.re.to_isize().unwrap(),
+                self.0.im.to_isize().unwrap()
+            )
+        } else {
+            write!(
+                f,
+                "{}+{}i",
+                self.0.re.to_isize().unwrap(),
+                self.0.im.to_isize().unwrap()
+            )
+        }
+    }
 }
 
 #[cfg(test)]
