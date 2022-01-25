@@ -91,6 +91,18 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     pub fn is_rational(&self) -> bool {
         self.0.im == T::zero()
     }
+/// Returs an iterator of all Gaussian primes with integer parts below *n*.
+pub fn get_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+    let mut primes: Vec<GaussianInt<_>> = vec![];
+    for a in 0..n {
+        for b in 0..n {
+            let z = GaussianInt::new(a, b);
+            if z.is_gaussian_prime() {
+                primes.push(z);
+            }
+        }
+    }
+    primes.into_iter()
 }
 
 impl<T: PrimInt> From<Complex<T>> for GaussianInt<T> {
