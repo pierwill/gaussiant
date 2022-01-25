@@ -9,6 +9,8 @@
 #![deny(missing_docs)]
 #![allow(clippy::needless_return)]
 
+use std::fmt;
+
 use num_complex::Complex;
 use num_traits::{PrimInt, Signed};
 
@@ -19,6 +21,17 @@ mod ops;
 /// This is a complex number whose real and imaginary parts are both integers.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
+
+impl<T: PrimInt> fmt::Display for GaussianInt<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "{}+{}i",
+            self.0.re.to_isize().unwrap(),
+            self.0.im.to_isize().unwrap()
+        )
+    }
+}
 
 impl<T: PrimInt> GaussianInt<T> {
     #[allow(missing_docs)]
