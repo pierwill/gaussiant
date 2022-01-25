@@ -116,8 +116,9 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     }
 }
 
-/// Returs an iterator of all Gaussian primes with integer parts below *n*.
-pub fn get_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+/// Returs an iterator of all Gaussian primes with positive real parts
+/// and with integer parts below *n*.
+pub fn get_positive_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
     for a in 0..n {
         for b in 0..n {
