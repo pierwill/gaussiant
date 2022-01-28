@@ -138,6 +138,12 @@ mod tests {
     }
 
     #[test]
+    fn is_gaussian_prime_2_plus_i() {
+        let c = gaussint!(2, 1);
+        assert_eq!(c.is_gaussian_prime(), true);
+    }
+
+    #[test]
     fn is_rational() {
         let c = gaussint!(7, 0);
         assert!(c.is_rational());

@@ -188,10 +188,9 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
             (false, false) => {
                 let a = a.to_isize().unwrap();
                 let b = b.to_isize().unwrap();
-                let both_prime = is_prime(a) && is_prime(b);
                 let sum_of_squares = isize::pow(a, 2) + isize::pow(b, 2);
                 let sum_of_squares_is_4n_plus_3 = (sum_of_squares - 3) % 4 == 0;
-                both_prime && is_prime(sum_of_squares) && !sum_of_squares_is_4n_plus_3
+                is_prime(sum_of_squares) && !sum_of_squares_is_4n_plus_3
             }
             _ => false,
         };
