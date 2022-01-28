@@ -17,6 +17,8 @@ mod tests {
     fn gauss_macro() {
         let z = gaussint!(1, 47);
         assert_eq!(z, gaussint!(1, 47));
+        let z = gaussint!(1);
+        assert_eq!(z, GaussianInt::new(1, 0));
     }
 
     #[test]
