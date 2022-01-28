@@ -1,3 +1,9 @@
+## Release 0.4.0 (2022-01-28)
+
+<!-- Releasing software is fun! -->
+
+Add `gaussint` macro for creating new `GaussianInt`s.
+
 ## Release 0.3.1 (2022-01-28)
 
 Fix the status badge on crates.io.

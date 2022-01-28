@@ -1,7 +1,7 @@
 [package]
 edition = "2021"
 name = "gaussiant"
-version = "0.3.1"
+version = "0.4.0"
 description = "Gaussian integers"
 keywords = ["mathematics", "numerics"]
 repository = "https://github.com/pierwill/gaussiant"
