@@ -55,6 +55,16 @@ impl<T: PrimInt> GaussianInt<T> {
 
 impl<T: PrimInt + Signed> GaussianInt<T> {
     /// Returns the complex conjugate.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(5, 4);
+    /// assert_eq!(z.conj(), GaussianInt::new(5, -4));
+    /// # }
+    /// ```
     pub fn conj(&self) -> Self {
         Self::new(self.0.re, -self.0.im)
     }
@@ -165,6 +175,16 @@ impl GaussianInt<isize> {
     /// Tests whether a Gaussian integer is "even."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(3, 1);
+    /// assert!(z.is_even());
+    /// # }
+    /// ```
     pub fn is_even(&self) -> bool {
         self.congruent(Self::zero(), Self::new(1, 1))
     }
@@ -172,6 +192,16 @@ impl GaussianInt<isize> {
     /// Tests whether a Gaussian integer is "odd."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(2, 1);
+    /// assert!(z.is_odd());
+    /// # }
+    /// ```
     pub fn is_odd(&self) -> bool {
         let one = Self::new(1, 0);
         self.congruent(one, Self::new(1, 1))
@@ -183,7 +213,19 @@ impl<T: PrimInt + Signed> GaussianInt<T>
 where
     f64: From<T>,
 {
-    /// Converts to polar form (r, theta).
+    /// Convert to polar form (r, theta), such that
+    /// `self = r * exp(i * theta)`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let c = GaussianInt::new(0, 1);
+    /// // The polar form of *i* is (1, π/2).
+    /// assert_eq!(c.to_polar(), (1f64, std::f64::consts::PI / 2f64));
+    /// # }
+    /// ```
     pub fn to_polar(&self) -> (f64, f64) {
         let a = self.0.re;
         let b = self.0.im;
