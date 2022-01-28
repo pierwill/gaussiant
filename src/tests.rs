@@ -14,6 +14,12 @@ mod tests {
     }
 
     #[test]
+    fn gauss_macro() {
+        let z = crate::gauss!(1, 47);
+        assert_eq!(z, GaussianInt::new(1, 47));
+    }
+
+    #[test]
     fn from_complex() {
         let c = Complex::new(5, 5);
         let g = GaussianInt::new(5, 5);

@@ -53,6 +53,14 @@ impl<T: PrimInt> GaussianInt<T> {
     }
 }
 
+/// A macro
+#[macro_export]
+macro_rules! gauss {
+    ( $a:expr, $b:expr ) => {
+        GaussianInt::new($a, $b)
+    };
+}
+
 impl<T: PrimInt + Signed> GaussianInt<T> {
     /// Returns the complex conjugate.
     ///
