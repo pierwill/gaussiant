@@ -36,6 +36,18 @@ impl<T: PrimInt> GaussianInt<T> {
     /// Given a Gaussian integer z0, called a modulus,
     /// two Gaussian integers z1, z2 are *congruent modulo z0*,
     /// if their difference is a multiple of z0.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let c1 = GaussianInt::new(5, 0);
+    /// let c2 = GaussianInt::new(25, 0);
+    /// let c3 = GaussianInt::new(10, 0);
+    /// assert!(c1.congruent(c2, c3));
+    /// # }
+    /// ```
     pub fn congruent(&self, other: Self, modulus: Self) -> bool {
         (*self - other) % modulus == Self::zero()
     }
@@ -48,16 +60,48 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     }
 
     /// Returns the norm.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(2, 7);
+    /// assert_eq!(z.norm(), GaussianInt::new(53, 0));
+    /// # }
+    /// ```
     pub fn norm(&self) -> Self {
         *self * self.conj()
     }
 
     /// Returns `true` if `self` is a divisor of `other`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let c1 = GaussianInt::new(5, 0);
+    /// let c2 = GaussianInt::new(1, 2);
+    /// assert_eq!(c1 / c2, GaussianInt::new(1, -2));
+    /// # }
+    /// ```
     pub fn is_divisor_of(&self, other: Self) -> bool {
         (other % *self) == Self::zero() && !(other.0.re != T::zero() && other.0.im != T::zero())
     }
 
     /// Tests whether a Gaussian integer is a rational integer.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(2, 7);
+    /// let z2 = GaussianInt::new(0, -7);
+    /// assert!((z + z2).is_rational());
+    /// # }
+    /// ```
     pub fn is_rational(&self) -> bool {
         self.0.im == T::zero()
     }
@@ -75,6 +119,16 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     ///    (which will not be of the form 4*n* + 3).
     ///
     /// [Gaussian primality]: https://en.wikipedia.org/wiki/Gaussian_integer#Gaussian_primes
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z = GaussianInt::new(2, 7);
+    /// assert!(z.is_gaussian_prime());
+    /// # }
+    /// ```
     pub fn is_gaussian_prime(&self) -> bool {
         let a = self.0.re;
         let b = self.0.im;
