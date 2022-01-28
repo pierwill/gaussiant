@@ -99,21 +99,15 @@ mod tests {
     }
 
     #[test]
-    fn from_i32() {
-        let c = GaussianInt::new(5, 0);
-        assert_eq!(5i32, c.into());
-    }
-
-    #[test]
     fn from_isize() {
         let c = GaussianInt::new(5, 0);
-        assert_eq!(5isize, c.into());
+        assert_eq!(5_isize, c.into());
     }
 
     #[test]
     fn conjugate() {
-        let c: GaussianInt<i32> = GaussianInt::new(5, 5);
-        let conj: GaussianInt<i32> = GaussianInt::new(5, -5);
+        let c: GaussianInt<isize> = GaussianInt::new(5, 5);
+        let conj: GaussianInt<isize> = GaussianInt::new(5, -5);
         assert_eq!(c.conj(), conj);
     }
 
