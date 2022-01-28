@@ -1,4 +1,5 @@
-[![Rust](https://github.com/pierwill/gaussiant/actions/workflows/rust.yml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/rust.yml)
+[![nightly](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml)
+[![stable](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml)
 [![documentation](https://docs.rs/gaussiant/badge.svg)](https://docs.rs/gaussiant)
 [![crate](https://img.shields.io/crates/v/gaussiant.svg)](https://crates.io/crates/gaussiant)
 
