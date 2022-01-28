@@ -32,6 +32,13 @@ impl<T: PrimInt> GaussianInt<T> {
     pub fn zero() -> Self {
         Self(Complex::new(T::zero(), T::zero()))
     }
+
+    /// Given a Gaussian integer z0, called a modulus,
+    /// two Gaussian integers z1, z2 are *congruent modulo z0*,
+    /// if their difference is a multiple of z0.
+    pub fn congruent(&self, other: Self, modulus: Self) -> bool {
+        (*self - other) % modulus == Self::zero()
+    }
 }
 
 impl<T: PrimInt + Signed> GaussianInt<T> {

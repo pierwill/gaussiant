@@ -147,4 +147,12 @@ mod tests {
         let c = GaussianInt::new(0, -1);
         assert_eq!(c.to_polar(), (1f64, -std::f64::consts::PI / 2f64));
     }
+    #[test]
+    fn congruence() {
+        let c1 = GaussianInt::new(5, 0);
+        let c2 = GaussianInt::new(25, 0);
+        let c3 = GaussianInt::new(10, 0);
+        assert!(c1.congruent(c2, c3));
+    }
+
 }
