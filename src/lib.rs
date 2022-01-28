@@ -107,6 +107,24 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     }
 }
 
+impl GaussianInt<isize> {
+    /// Tests whether a Gaussian integer is "even."
+    ///
+    /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
+    pub fn is_even(&self) -> bool {
+        self.congruent(Self::zero(), Self::new(1, 1))
+    }
+
+    /// Tests whether a Gaussian integer is "odd."
+    ///
+    /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
+    pub fn is_odd(&self) -> bool {
+        let one = Self::new(1, 0);
+        self.congruent(one, Self::new(1, 1))
+        // *self % (Self::new(1, 1) + one) == Self::zero()
+    }
+}
+
 impl<T: PrimInt + Signed> GaussianInt<T>
 where
     f64: From<T>,

@@ -155,4 +155,19 @@ mod tests {
         assert!(c1.congruent(c2, c3));
     }
 
+    #[test]
+    fn is_even() {
+        let z = GaussianInt::new(4, 0);
+        assert!(z.is_even());
+        let z = GaussianInt::new(-3, 1);
+        assert!(z.is_even());
+    }
+
+    #[test]
+    fn is_odd() {
+        let z = GaussianInt::new(1, 0);
+        assert!(z.is_odd());
+        let z = GaussianInt::new(2, 1);
+        assert!(z.is_odd());
+    }
 }
