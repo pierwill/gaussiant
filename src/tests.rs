@@ -143,4 +143,14 @@ mod tests {
         let c = GaussianInt::new(5, 1);
         assert!(!c.is_rational());
     }
+
+    #[test]
+    fn to_polar() {
+        let c = GaussianInt::new(5, 0);
+        assert_eq!(c.to_polar(), (5f64, 0f64));
+        let c = GaussianInt::new(0, 1);
+        assert_eq!(c.to_polar(), (1f64, std::f64::consts::PI / 2f64));
+        let c = GaussianInt::new(0, -1);
+        assert_eq!(c.to_polar(), (1f64, -std::f64::consts::PI / 2f64));
+    }
 }

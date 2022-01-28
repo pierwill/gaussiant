@@ -100,6 +100,20 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     }
 }
 
+impl<T: PrimInt + Signed> GaussianInt<T>
+where
+    f64: From<T>,
+{
+    /// Converts to polar form (r, theta).
+    pub fn to_polar(&self) -> (f64, f64) {
+        let a = self.0.re;
+        let b = self.0.im;
+        let a: f64 = a.into();
+        let b: f64 = b.into();
+        Complex::new(a, b).to_polar()
+    }
+}
+
 /// Returs an iterator of all Gaussian primes with positive real parts
 /// and with integer parts below *n*.
 pub fn get_positive_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
