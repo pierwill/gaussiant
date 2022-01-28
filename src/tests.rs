@@ -327,4 +327,14 @@ mod tests {
         let z = gaussint!(2, 1);
         assert!(z.is_odd());
     }
+
+    #[test]
+    fn units() {
+        let u = GaussianInt::units();
+        let mut sum = GaussianInt::zero();
+        for x in u {
+            sum = sum + x;
+        }
+        assert_eq!(gaussint!(0), sum);
+    }
 }
