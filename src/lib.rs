@@ -35,7 +35,7 @@ pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 /// }
 /// ```
 #[macro_export]
-macro_rules! gauss {
+macro_rules! gaussint {
     ( $a:expr, $b:expr ) => {
         GaussianInt::new($a, $b)
     };
