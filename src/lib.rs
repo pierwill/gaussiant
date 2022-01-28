@@ -9,6 +9,13 @@
 #![deny(missing_docs)]
 #![allow(clippy::needless_return)]
 
+#[cfg(doctest)]
+#[macro_use]
+extern crate doc_comment;
+
+#[cfg(doctest)]
+doctest!("../README.md");
+
 use std::fmt;
 
 use num_complex::Complex;
