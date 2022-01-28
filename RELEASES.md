@@ -1,3 +1,7 @@
+## Release 0.3.1 (2022-01-28)
+
+Fix the status badge on crates.io.
+
 ## Release 0.3.0 (2022-01-28)
 
 - Add a method to test for congruence between two Gaussian integers, modulo a third.
