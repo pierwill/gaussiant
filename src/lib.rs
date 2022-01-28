@@ -14,7 +14,7 @@
 extern crate doc_comment;
 
 #[cfg(doctest)]
-doctest!("../README.md");
+doctest!("../README.md", readme);
 
 use std::fmt;
 
