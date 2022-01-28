@@ -26,7 +26,7 @@ mod ops;
 /// A Gaussian integer.
 ///
 /// This is a complex number whose real and imaginary parts are both integers.
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
 /// Creates a new [`GaussianInt`].
