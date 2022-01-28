@@ -3,6 +3,7 @@ edition = "2021"
 name = "gaussiant"
 version = "0.3.1"
 description = "Gaussian integers"
+keywords = ["mathematics", "numerics"]
 repository = "https://github.com/pierwill/gaussiant"
 readme = "README.md"
 license = "MIT OR Apache-2.0"
