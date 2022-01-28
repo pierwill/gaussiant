@@ -82,6 +82,12 @@ mod tests {
     }
 
     #[test]
+    fn neg() {
+        let z = GaussianInt::new(2, 2);
+        assert_eq!(z + -z, GaussianInt::zero());
+    }
+
+    #[test]
     fn is_divisor_of() {
         let five = GaussianInt::new(5, 0);
         assert!(GaussianInt::new(1, 0).is_divisor_of(five));

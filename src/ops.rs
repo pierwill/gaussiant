@@ -1,5 +1,5 @@
 use crate::GaussianInt;
-use num_traits::PrimInt;
+use num_traits::{PrimInt, Signed};
 
 impl<T: PrimInt> std::ops::Add for GaussianInt<T> {
     type Output = Self;
@@ -33,5 +33,12 @@ impl<T: PrimInt> std::ops::Rem for GaussianInt<T> {
     type Output = Self;
     fn rem(self, other: Self) -> Self::Output {
         Self::from(self.0 % other.0)
+    }
+}
+
+impl<T: PrimInt + Signed> std::ops::Neg for GaussianInt<T> {
+    type Output = Self;
+    fn neg(self) -> Self::Output {
+        Self::from(-self.0)
     }
 }
