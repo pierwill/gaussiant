@@ -27,11 +27,11 @@ pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 /// # Example
 ///
 /// ```
-/// use gaussiant::{GaussianInt, gauss};
+/// use gaussiant::{GaussianInt, gaussint};
 /// fn main() {
-///     let z = gauss!(1, 1);
-///     let _z = gauss!(1, -1);
-///     assert_eq!(z * _z, gauss!(2, 0));
+///     let z = gaussint!(1, 1);
+///     let _z = gaussint!(1, -1);
+///     assert_eq!(z * _z, gaussint!(2, 0));
 /// }
 /// ```
 #[macro_export]
