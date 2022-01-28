@@ -22,6 +22,25 @@ mod ops;
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
+/// Creates a new [`GaussianInt`].
+///
+/// # Example
+///
+/// ```
+/// use gaussiant::{GaussianInt, gaussint};
+/// fn main() {
+///     let z = gaussint!(1, 1);
+///     let _z = gaussint!(1, -1);
+///     assert_eq!(z * _z, gaussint!(2, 0));
+/// }
+/// ```
+#[macro_export]
+macro_rules! gaussint {
+    ( $a:expr, $b:expr ) => {
+        GaussianInt::new($a, $b)
+    };
+}
+
 impl<T: PrimInt> GaussianInt<T> {
     #[allow(missing_docs)]
     pub fn new(r: T, i: T) -> Self {
