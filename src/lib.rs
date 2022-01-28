@@ -83,7 +83,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     /// # fn main() {
     /// let c1 = GaussianInt::new(5, 0);
     /// let c2 = GaussianInt::new(1, 2);
-    /// assert_eq!(c1 / c2, GaussianInt::new(1, -2));
+    /// assert!(c2.is_divisor_of(c1));
     /// # }
     /// ```
     pub fn is_divisor_of(&self, other: Self) -> bool {
