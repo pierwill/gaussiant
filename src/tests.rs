@@ -337,4 +337,9 @@ mod tests {
         }
         assert_eq!(gaussint!(0), sum);
     }
+    #[test]
+    fn associated() {
+        let z1 = gaussint!(1, 2);
+        assert!(z1.is_associated_prime(z1.conj()));
+    }
 }

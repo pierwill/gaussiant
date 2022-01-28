@@ -221,6 +221,16 @@ impl GaussianInt<isize> {
         ]
     }
 
+    /// TODO
+    pub fn is_associated(&self, other: Self) -> bool {
+        for u in GaussianInt::units() {
+            if *self * u == other {
+                return false;
+            }
+        }
+        true
+    }
+
     /// Tests whether a Gaussian integer is "even."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
