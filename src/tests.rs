@@ -348,6 +348,17 @@ mod tests {
         let z2 = gaussint!(-1, 0);
         assert!(z1.is_associated(z2));
 
+        // 1+i and 1-i are both prime.
+        // They are also one another's conjugates *and* associates.
+        //
+        // See ../examples/prime-conjugate.rs
+        let z1 = gaussint!(1, 1);
+        let z2 = gaussint!(1, -1);
+        assert!(z1.is_gaussian_prime());
+        assert!(z2.is_gaussian_prime());
+        assert!(z1.is_associated(z2));
+        assert!(z2.is_associated(z1));
+
         let z1 = gaussint!(2, 1);
         let z2 = gaussint!(-1, 2);
         assert!(z1.is_associated(z2));
