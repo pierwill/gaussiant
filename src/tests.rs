@@ -133,7 +133,7 @@ mod tests {
         let c = gaussint!(7, 0);
         assert_eq!(c.is_gaussian_prime(), true);
 
-        let c = gaussint!(11, 0);
+        let c = gaussint!(3, 20);
         assert_eq!(c.is_gaussian_prime(), true);
     }
 
@@ -166,8 +166,14 @@ mod tests {
     #[test]
     fn congruence() {
         let c1 = gaussint!(5, 0);
-        let c2 = gaussint!(25, 0);
-        let c3 = gaussint!(10, 0);
+        let c2 = gaussint!(1, 0);
+        let c3 = gaussint!(4, 0);
+        assert!(c1.congruent(c2, c3));
+
+        // 2 + 5i ≡ i mod 1 + 2i
+        let c1 = gaussint!(2, 5);
+        let c2 = gaussint!(0, 1);
+        let c3 = gaussint!(1, 2);
         assert!(c1.congruent(c2, c3));
     }
 
