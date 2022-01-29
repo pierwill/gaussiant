@@ -122,48 +122,6 @@ mod tests {
     // See https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
     #[test]
     fn is_gaussian_prime() {
-        let c = gaussint!(0, 0);
-        assert_eq!(c.is_gaussian_prime(), false);
-
-        let c = gaussint!(0, 2);
-        assert_eq!(c.is_gaussian_prime(), false);
-
-        let c = gaussint!(1, 1);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(1, -1);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(2, 1);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(1, 2);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        // let c = gaussint!(-1, -1);
-        // assert_eq!(c.is_gaussian_prime(), false);
-
-        let c = gaussint!(2, 0);
-        assert_eq!(c.is_gaussian_prime(), false);
-
-        let c = gaussint!(3, 0);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(3, 2);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(2, 3);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(2, 5);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(5, 2);
-        assert_eq!(c.is_gaussian_prime(), true);
-
-        let c = gaussint!(5, 0);
-        assert_eq!(c.is_gaussian_prime(), false);
-
         let c = gaussint!(6, 1);
         assert_eq!(c.is_gaussian_prime(), true);
 
@@ -176,7 +134,7 @@ mod tests {
         let c = gaussint!(11, 0);
         assert_eq!(c.is_gaussian_prime(), true);
 
-        //
+        // Test all a + bi where |a|,|b| <= 5.
         assert_eq!(gaussint!(-5, -5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-5, -4).is_gaussian_prime(), true);
         assert_eq!(gaussint!(-5, -3).is_gaussian_prime(), false);
@@ -189,60 +147,124 @@ mod tests {
         assert_eq!(gaussint!(-5, 4).is_gaussian_prime(), true);
         assert_eq!(gaussint!(-5, 5).is_gaussian_prime(), false);
 
-        assert_eq!(gaussint!(-5, 5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-4, -5).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-4, -4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-4, -3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-4, -2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-4, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-4, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-4, 1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-4, 2).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-4, 3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-4, 4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-4, 5).is_gaussian_prime(), true);
 
+        assert_eq!(gaussint!(-3, -5).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-3, -4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-3, -3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-3, -2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-3, -1).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-3, 0).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-3, 1).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-3, 2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-3, 3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-3, 4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(-3, 5).is_gaussian_prime(), false);
 
         assert_eq!(gaussint!(-2, -5).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-2, -4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-2, -3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-2, -2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-2, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-2, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-2, 1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-2, 2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-2, 3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-2, 4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-2, 5).is_gaussian_prime(), true);
 
+        assert_eq!(gaussint!(-1, -5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-1, -4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-1, -3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-1, -2).is_gaussian_prime(), true);
-        assert_eq!(gaussint!(-1, 1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-1, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-1, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-1, 1).is_gaussian_prime(), true);
         assert_eq!(gaussint!(-1, 2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-1, 3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-1, 4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(-1, 5).is_gaussian_prime(), false);
 
+        assert_eq!(gaussint!(0, -5).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, -4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(0, -3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(0, -2).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, -1).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, 0).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, 1).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, 2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(0, 3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(0, 4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(0, 5).is_gaussian_prime(), false);
 
+        assert_eq!(gaussint!(1, -5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(1, -4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(1, -3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(1, -2).is_gaussian_prime(), true);
-        assert_eq!(gaussint!(1, 1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(1, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(1, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(1, 1).is_gaussian_prime(), true);
         assert_eq!(gaussint!(1, 2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(1, 3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(1, 4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(1, 5).is_gaussian_prime(), false);
 
         assert_eq!(gaussint!(2, -5).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(2, -4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(2, -3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(2, -2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(2, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(2, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(2, 1).is_gaussian_prime(), true);
         assert_eq!(gaussint!(2, 3).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(2, 4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(2, 5).is_gaussian_prime(), true);
 
+        assert_eq!(gaussint!(3, -5).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(3, -4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(3, -3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(3, -2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(3, -1).is_gaussian_prime(), false);
         assert_eq!(gaussint!(3, 0).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(3, 1).is_gaussian_prime(), false);
         assert_eq!(gaussint!(3, 2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(3, 3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(3, 4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(3, 5).is_gaussian_prime(), false);
 
         assert_eq!(gaussint!(4, -5).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(4, -4).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(4, -3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(4, -2).is_gaussian_prime(), false);
         assert_eq!(gaussint!(4, -1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(4, 0).is_gaussian_prime(), false);
         assert_eq!(gaussint!(4, 1).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(4, 2).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(4, 3).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(4, 4).is_gaussian_prime(), false);
         assert_eq!(gaussint!(4, 5).is_gaussian_prime(), true);
 
+        assert_eq!(gaussint!(5, -5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(5, -4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(5, -3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(5, -2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(5, -1).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(5, 0).is_gaussian_prime(), false);
+        assert_eq!(gaussint!(5, 1).is_gaussian_prime(), false);
         assert_eq!(gaussint!(5, 2).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(5, 3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(5, 4).is_gaussian_prime(), true);
+        assert_eq!(gaussint!(5, 5).is_gaussian_prime(), false);
     }
 
     #[test]
