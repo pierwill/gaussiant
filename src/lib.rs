@@ -306,32 +306,118 @@ where
     }
 }
 
+/// The different kinds of signs we can have.
+///
+/// Zero is always included.
+pub enum GaussianIntSigns {
+    /// pos + pos i
+    BothPos,
+    /// pos + neg i
+    RePosImNeg,
+    /// neg + pos i
+    ReNegImPos,
+    /// neg + neg i
+    BothNeg,
+}
+
 /// Returns an iterator of all Gaussian primesa + bi
 /// where |a|,|b| <= `n`.
-pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+pub fn get_g_primes(
+    n: isize,
+    signs: GaussianIntSigns,
+) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in -n..=n {
-        for b in -n..=n {
-            let z = GaussianInt::new(a, b);
-            if z.is_gaussian_prime() {
-                primes.push(z);
+
+    match signs {
+        GaussianIntSigns::BothPos => {
+            for a in 0..=n {
+                for b in 0..=n {
+                    let z = GaussianInt::new(a, b);
+                    if z.is_gaussian_prime() {
+                        primes.push(z);
+                    }
+                }
+            }
+        }
+        GaussianIntSigns::RePosImNeg => {
+            for a in 0..=n {
+                for b in -n..=0 {
+                    let z = GaussianInt::new(a, b);
+                    if z.is_gaussian_prime() {
+                        primes.push(z);
+                    }
+                }
+            }
+        }
+        GaussianIntSigns::ReNegImPos => {
+            for a in -n..=0 {
+                for b in 0..=n {
+                    let z = GaussianInt::new(a, b);
+                    if z.is_gaussian_prime() {
+                        primes.push(z);
+                    }
+                }
+            }
+        }
+        GaussianIntSigns::BothNeg => {
+            for a in -n..=0 {
+                for b in -n..=0 {
+                    let z = GaussianInt::new(a, b);
+                    if z.is_gaussian_prime() {
+                        primes.push(z);
+                    }
+                }
             }
         }
     }
+
     primes.into_iter()
 }
 
 /// Returns an iterator of all Gaussian integers a + bi
 /// where |a|,|b| <= `n`.
-pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
-    let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in -n..=n {
-        for b in -n..=n {
-            let z = GaussianInt::new(a, b);
-            primes.push(z);
+pub fn get_g_ints(
+    n: isize,
+    signs: GaussianIntSigns,
+) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+    let mut ints: Vec<GaussianInt<_>> = vec![];
+
+    match signs {
+        GaussianIntSigns::BothPos => {
+            for a in 0..=n {
+                for b in 0..=n {
+                    let z = GaussianInt::new(a, b);
+                    ints.push(z);
+                }
+            }
+        }
+        GaussianIntSigns::RePosImNeg => {
+            for a in 0..=n {
+                for b in -n..=0 {
+                    let z = GaussianInt::new(a, b);
+                    ints.push(z);
+                }
+            }
+        }
+        GaussianIntSigns::ReNegImPos => {
+            for a in -n..=0 {
+                for b in 0..=n {
+                    let z = GaussianInt::new(a, b);
+                    ints.push(z);
+                }
+            }
+        }
+        GaussianIntSigns::BothNeg => {
+            for a in -n..=0 {
+                for b in -n..=0 {
+                    let z = GaussianInt::new(a, b);
+                    ints.push(z);
+                }
+            }
         }
     }
-    primes.into_iter()
+
+    ints.into_iter()
 }
 
 impl<T: PrimInt> From<Complex<T>> for GaussianInt<T> {

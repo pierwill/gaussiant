@@ -1,13 +1,10 @@
-use gaussiant::GaussianInt;
-
-const MAX: i32 = 1000;
+use gaussiant::GaussianIntSigns;
 
 fn main() {
-    for a in 0..MAX {
-        for b in 0..MAX {
-            if GaussianInt::new(a, b).is_gaussian_prime() {
-                println!("{}+{}i is prime", a, b);
-            }
+    let set = gaussiant::get_g_ints(100, GaussianIntSigns::BothPos);
+    for z in set {
+        if z.is_gaussian_prime() {
+            println!("{z} is prime");
         }
     }
 }
