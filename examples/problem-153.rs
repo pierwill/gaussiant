@@ -13,7 +13,7 @@ fn main() {
 
         for z in set {
             if z != GaussianInt::zero() && z.0.re != 0 {
-                if z.is_divisor_of(GaussianInt::new(_n, 0)) {
+                if z.divides(GaussianInt::new(_n, 0)) {
                     divisors.push(z);
                     sum += z.0.re;
                     sum += z.0.im;
