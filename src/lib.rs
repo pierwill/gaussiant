@@ -221,14 +221,26 @@ impl GaussianInt<isize> {
         ]
     }
 
-    /// TODO
+    /// Gaussian integers are called associates
+    /// if they can be obtained from one another by multiplication by units.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z1 = GaussianInt::new(1, 1);
+    /// let z2 = GaussianInt::new(1, -1);
+    /// assert!(z1.is_associated(z2));
+    /// # }
+    /// ```
     pub fn is_associated(&self, other: Self) -> bool {
         for u in GaussianInt::units() {
-            if *self * u == other {
-                return false;
+            if (*self * u) == other {
+                return true;
             }
         }
-        true
+        false
     }
 
     /// Tests whether a Gaussian integer is "even."

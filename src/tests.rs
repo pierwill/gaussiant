@@ -68,6 +68,10 @@ mod tests {
         let c1 = gaussint!(3, 2);
         let c2 = gaussint!(2, 3);
         assert_eq!(c1 * c2, gaussint!(0, 13));
+
+        let c1 = gaussint!(2, 1);
+        let c2 = gaussint!(0, -1);
+        assert_eq!(c1 * c2, gaussint!(1, -2));
     }
 
     #[test]
@@ -337,9 +341,19 @@ mod tests {
         }
         assert_eq!(gaussint!(0), sum);
     }
+
     #[test]
     fn associated() {
-        let z1 = gaussint!(1, 2);
-        assert!(z1.is_associated_prime(z1.conj()));
+        let z1 = gaussint!(1, 0);
+        let z2 = gaussint!(-1, 0);
+        assert!(z1.is_associated(z2));
+
+        let z1 = gaussint!(2, 1);
+        let z2 = gaussint!(-1, 2);
+        assert!(z1.is_associated(z2));
+
+        let z1 = gaussint!(2, 1);
+        let z2 = gaussint!(-1, -2);
+        assert!(!z1.is_associated(z2));
     }
 }
