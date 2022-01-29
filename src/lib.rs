@@ -174,23 +174,23 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 
         let condition_1 = match (a.is_zero(), b.is_zero()) {
             (true, false) => {
-                let other = b.to_isize().unwrap();
-                is_prime(other) && (other - 3) % 4 == 0
+                let other = b.to_u64().unwrap();
+                primal::is_prime(other) && (other - 3) % 4 == 0
             }
             (false, true) => {
-                let other = a.to_isize().unwrap();
-                is_prime(other) && (other - 3) % 4 == 0
+                let other = a.to_u64().unwrap();
+                primal::is_prime(other) && (other - 3) % 4 == 0
             }
             _ => false,
         };
 
         let condition_2 = match (a.is_zero(), b.is_zero()) {
             (false, false) => {
-                let a = a.to_isize().unwrap();
-                let b = b.to_isize().unwrap();
-                let sum_of_squares = isize::pow(a, 2) + isize::pow(b, 2);
+                let a = a.to_u64().unwrap();
+                let b = b.to_u64().unwrap();
+                let sum_of_squares = u64::pow(a, 2) + u64::pow(b, 2);
                 let sum_of_squares_is_4n_plus_3 = (sum_of_squares - 3) % 4 == 0;
-                is_prime(sum_of_squares) && !sum_of_squares_is_4n_plus_3
+                primal::is_prime(sum_of_squares) && !sum_of_squares_is_4n_plus_3
             }
             _ => false,
         };
@@ -301,15 +301,6 @@ impl<T: PrimInt> From<GaussianInt<T>> for isize {
     fn from(g: GaussianInt<T>) -> Self {
         g.0.re.to_isize().unwrap()
     }
-}
-
-fn is_prime(number: isize) -> bool {
-    for i in 2..(number / 2 + 1) {
-        if number % i == 0 {
-            return false;
-        }
-    }
-    return number > 1;
 }
 
 impl<T: PrimInt> fmt::Display for GaussianInt<T> {
