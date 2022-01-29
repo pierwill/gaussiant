@@ -121,7 +121,7 @@ mod tests {
 
     // See https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
     #[test]
-    fn is_gaussian_prime() {
+    fn is_gaussian_prime_misc() {
         let c = gaussint!(6, 1);
         assert_eq!(c.is_gaussian_prime(), true);
 
@@ -134,6 +134,15 @@ mod tests {
         let c = gaussint!(11, 0);
         assert_eq!(c.is_gaussian_prime(), true);
 
+        let c = gaussint!(-927, -980);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(999, 994);
+        assert_eq!(c.is_gaussian_prime(), true);
+    }
+
+    #[test]
+    fn is_gaussian_prime_all_5() {
         // Test all a + bi where |a|,|b| <= 5.
         assert_eq!(gaussint!(-5, -5).is_gaussian_prime(), false);
         assert_eq!(gaussint!(-5, -4).is_gaussian_prime(), true);
@@ -265,12 +274,6 @@ mod tests {
         assert_eq!(gaussint!(5, 3).is_gaussian_prime(), false);
         assert_eq!(gaussint!(5, 4).is_gaussian_prime(), true);
         assert_eq!(gaussint!(5, 5).is_gaussian_prime(), false);
-    }
-
-    #[test]
-    fn is_gaussian_prime_2_plus_i() {
-        let c = gaussint!(2, 1);
-        assert_eq!(c.is_gaussian_prime(), true);
     }
 
     #[test]
