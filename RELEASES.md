@@ -2,6 +2,7 @@
 
 - Use [`primal`](https://crates.io/crates/primal) in `is_gaussian_prime` algorithm.
   Much, much faster!
+- Added a new example `prime1mod4` to compute a certain kind of Gaussian prime.
 - Rename `is_divisor_of` method to `divides`.
 - Add `units` function to return ±1, ±*i*.
 - Add `is_associated` method.
