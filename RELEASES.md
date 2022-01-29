@@ -2,6 +2,7 @@
 
 - Use [`primal`](https://crates.io/crates/primal) in `is_gaussian_prime` algorithm.
   Much, much faster!
+- Rename `is_divisor_of` to `divides`.
 
 ## Release 0.4.0 (2022-01-28)
 

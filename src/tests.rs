@@ -96,14 +96,14 @@ mod tests {
     }
 
     #[test]
-    fn is_divisor_of() {
+    fn divides() {
         let five = gaussint!(5, 0);
-        assert!(gaussint!(1, 0).is_divisor_of(five));
-        assert!(gaussint!(1, 2).is_divisor_of(five));
-        assert!(gaussint!(1, -2).is_divisor_of(five));
-        assert!(gaussint!(2, 1).is_divisor_of(five));
-        assert!(gaussint!(2, -1).is_divisor_of(five));
-        assert!(five.is_divisor_of(five));
+        assert!(gaussint!(1, 0).divides(five));
+        assert!(gaussint!(1, 2).divides(five));
+        assert!(gaussint!(1, -2).divides(five));
+        assert!(gaussint!(2, 1).divides(five));
+        assert!(gaussint!(2, -1).divides(five));
+        assert!(five.divides(five));
     }
 
     #[test]

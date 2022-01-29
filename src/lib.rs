@@ -113,7 +113,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         *self * self.conj()
     }
 
-    /// Returns `true` if `self` is a divisor of `other`.
+    /// Returns `true` if `self` divides `other`.
     ///
     /// # Example
     ///
@@ -122,11 +122,11 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     /// # fn main() {
     /// let c1 = GaussianInt::new(5, 0);
     /// let c2 = GaussianInt::new(1, 2);
-    /// assert!(c2.is_divisor_of(c1));
+    /// assert!(c2.divides(c1));
     /// # }
     /// ```
-    pub fn is_divisor_of(&self, other: Self) -> bool {
-        (other % *self) == Self::zero() && !(other.0.re != T::zero() && other.0.im != T::zero())
+    pub fn divides(&self, other: Self) -> bool {
+        *self != Self::zero() && (other % *self) == Self::zero()
     }
 
     /// Tests whether a Gaussian integer is a rational integer.
