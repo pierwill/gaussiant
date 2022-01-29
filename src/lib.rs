@@ -168,9 +168,6 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     /// assert!(z.is_gaussian_prime());
     /// # }
     /// ```
-    /// # Panics
-    ///
-    /// Panics if the real part is negative.
     pub fn is_gaussian_prime(&self) -> bool {
         let a = self.0.re;
         let b = self.0.im;
