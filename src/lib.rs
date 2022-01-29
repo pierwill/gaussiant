@@ -321,11 +321,11 @@ pub fn get_positive_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>>
     primes.into_iter()
 }
 
-/// Returns an iterator of all Gaussian integers with positive real parts
-/// and with integer parts below *n*.
+/// Returns an iterator of all Gaussian integers a + bi
+/// where |a|,|b| <= `n`.
 pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in 0..=n {
+    for a in -n..=n {
         for b in -n..=n {
             let z = GaussianInt::new(a, b);
             primes.push(z);
