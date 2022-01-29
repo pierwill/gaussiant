@@ -179,6 +179,14 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
             }
             (false, true) => {
                 let other = a.to_u64().unwrap();
+                // HACK:
+                //
+                // 2 is not Gaussian prime.
+                // But mostly this prevents an integer overflow
+                // in the next line.
+                if other == 2 {
+                    return false;
+                }
                 primal::is_prime(other) && (other - 3) % 4 == 0
             }
             _ => false,
