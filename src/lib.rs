@@ -176,7 +176,7 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
         let b = self.0.im;
 
         // These numbers would cause integer overflow panics below.
-        match (a.abs().to_i8().unwrap(), b.abs().to_i8().unwrap()) {
+        match (a.abs().to_isize().unwrap(), b.abs().to_isize().unwrap()) {
             (0, 0) => return false,
             (1, 1) => return true,
             (-1, -1) => return true,
