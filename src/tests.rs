@@ -119,16 +119,56 @@ mod tests {
         assert_eq!(c.conj(), conj);
     }
 
+    // See https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
     #[test]
     fn is_gaussian_prime() {
+        let c = gaussint!(0, 0);
+        assert_eq!(c.is_gaussian_prime(), false);
+
+        let c = gaussint!(0, 2);
+        assert_eq!(c.is_gaussian_prime(), false);
+
+        let c = gaussint!(1, 1);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(2, 1);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(1, 2);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        // let c = gaussint!(-1, -1);
+        // assert_eq!(c.is_gaussian_prime(), false);
+
         let c = gaussint!(2, 0);
         assert_eq!(c.is_gaussian_prime(), false);
 
         let c = gaussint!(3, 0);
         assert_eq!(c.is_gaussian_prime(), true);
 
+        let c = gaussint!(3, 2);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(2, 3);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(2, 5);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(5, 2);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        // let c = gaussint!(-3, 0);
+        // assert_eq!(c.is_gaussian_prime(), true);
+
         let c = gaussint!(5, 0);
         assert_eq!(c.is_gaussian_prime(), false);
+
+        let c = gaussint!(6, 1);
+        assert_eq!(c.is_gaussian_prime(), true);
+
+        let c = gaussint!(1, 6);
+        assert_eq!(c.is_gaussian_prime(), true);
 
         let c = gaussint!(7, 0);
         assert_eq!(c.is_gaussian_prime(), true);

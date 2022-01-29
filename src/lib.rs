@@ -168,25 +168,29 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
     /// assert!(z.is_gaussian_prime());
     /// # }
     /// ```
+    /// # Panics
+    ///
+    /// Panics if the real part is negative.
     pub fn is_gaussian_prime(&self) -> bool {
         let a = self.0.re;
         let b = self.0.im;
 
+        // These numbers cause panics below
+        match (a.abs().to_usize().unwrap(), b.abs().to_usize().unwrap()) {
+            (0, 0) => return false,
+            (1, 1) => return true,
+            (2, 0) => return false,
+            (0, 2) => return false,
+            _ => {}
+        }
+
         let condition_1 = match (a.is_zero(), b.is_zero()) {
             (true, false) => {
-                let other = b.to_u64().unwrap();
+                let other = b.abs().to_u64().unwrap();
                 primal::is_prime(other) && (other - 3) % 4 == 0
             }
             (false, true) => {
-                let other = a.to_u64().unwrap();
-                // HACK:
-                //
-                // 2 is not Gaussian prime.
-                // But mostly this prevents an integer overflow
-                // in the next line.
-                if other == 2 {
-                    return false;
-                }
+                let other = a.abs().to_u64().unwrap();
                 primal::is_prime(other) && (other - 3) % 4 == 0
             }
             _ => false,
@@ -194,8 +198,8 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 
         let condition_2 = match (a.is_zero(), b.is_zero()) {
             (false, false) => {
-                let a = a.to_u64().unwrap();
-                let b = b.to_u64().unwrap();
+                let a = a.abs().to_u64().unwrap();
+                let b = b.abs().to_u64().unwrap();
                 let sum_of_squares = u64::pow(a, 2) + u64::pow(b, 2);
                 let sum_of_squares_is_4n_plus_3 = (sum_of_squares - 3) % 4 == 0;
                 primal::is_prime(sum_of_squares) && !sum_of_squares_is_4n_plus_3
