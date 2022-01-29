@@ -26,7 +26,7 @@ mod ops;
 /// A Gaussian integer.
 ///
 /// This is a complex number whose real and imaginary parts are both integers.
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
 /// Creates a new [`GaussianInt`].
@@ -210,6 +210,39 @@ impl<T: PrimInt + Signed> GaussianInt<T> {
 }
 
 impl GaussianInt<isize> {
+    /// Returns an array of the units of ℤ\[*i*\], the ring of Gaussian integers:
+    /// ±1, ±*i*.
+    pub fn units() -> Vec<GaussianInt<isize>> {
+        vec![
+            Self::new(1, 0),
+            Self::new(-1, 0),
+            Self::new(0, 1),
+            Self::new(0, -1),
+        ]
+    }
+
+    /// Gaussian integers are called associates
+    /// if they can be obtained from one another by multiplication by units.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// let z1 = GaussianInt::new(1, 1);
+    /// let z2 = GaussianInt::new(1, -1);
+    /// assert!(z1.is_associated(z2));
+    /// # }
+    /// ```
+    pub fn is_associated(&self, other: Self) -> bool {
+        for u in GaussianInt::units() {
+            if (*self * u) == other {
+                return true;
+            }
+        }
+        false
+    }
+
     /// Tests whether a Gaussian integer is "even."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
@@ -273,12 +306,12 @@ where
     }
 }
 
-/// Returns an iterator of all Gaussian primes with positive real parts
-/// and with integer parts below *n*.
-pub fn get_positive_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+/// Returns an iterator of all Gaussian primesa + bi
+/// where |a|,|b| <= `n`.
+pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in 0..=n {
-        for b in 0..=n {
+    for a in -n..=n {
+        for b in -n..=n {
             let z = GaussianInt::new(a, b);
             if z.is_gaussian_prime() {
                 primes.push(z);
@@ -288,11 +321,11 @@ pub fn get_positive_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>>
     primes.into_iter()
 }
 
-/// Returns an iterator of all Gaussian integers with positive real parts
-/// and with integer parts below *n*.
+/// Returns an iterator of all Gaussian integers a + bi
+/// where |a|,|b| <= `n`.
 pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in 0..=n {
+    for a in -n..=n {
         for b in -n..=n {
             let z = GaussianInt::new(a, b);
             primes.push(z);

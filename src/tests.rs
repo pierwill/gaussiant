@@ -68,6 +68,10 @@ mod tests {
         let c1 = gaussint!(3, 2);
         let c2 = gaussint!(2, 3);
         assert_eq!(c1 * c2, gaussint!(0, 13));
+
+        let c1 = gaussint!(2, 1);
+        let c2 = gaussint!(0, -1);
+        assert_eq!(c1 * c2, gaussint!(1, -2));
     }
 
     #[test]
@@ -326,5 +330,41 @@ mod tests {
 
         let z = gaussint!(2, 1);
         assert!(z.is_odd());
+    }
+
+    #[test]
+    fn units() {
+        let u = GaussianInt::units();
+        let mut sum = GaussianInt::zero();
+        for x in u {
+            sum = sum + x;
+        }
+        assert_eq!(gaussint!(0), sum);
+    }
+
+    #[test]
+    fn associated() {
+        let z1 = gaussint!(1, 0);
+        let z2 = gaussint!(-1, 0);
+        assert!(z1.is_associated(z2));
+
+        // 1+i and 1-i are both prime.
+        // They are also one another's conjugates *and* associates.
+        //
+        // See ../examples/prime-conjugate.rs
+        let z1 = gaussint!(1, 1);
+        let z2 = gaussint!(1, -1);
+        assert!(z1.is_gaussian_prime());
+        assert!(z2.is_gaussian_prime());
+        assert!(z1.is_associated(z2));
+        assert!(z2.is_associated(z1));
+
+        let z1 = gaussint!(2, 1);
+        let z2 = gaussint!(-1, 2);
+        assert!(z1.is_associated(z2));
+
+        let z1 = gaussint!(2, 1);
+        let z2 = gaussint!(-1, -2);
+        assert!(!z1.is_associated(z2));
     }
 }
