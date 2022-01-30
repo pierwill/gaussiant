@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run tests
-      run: cargo +stable test --verbose
+      run: cargo +stable test --all-features --verbose
