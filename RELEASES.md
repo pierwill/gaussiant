@@ -1,3 +1,8 @@
+## v0.5.1 (2022-01-30)
+
+- Add new example to show basic plotting.
+- Edit documentation.
+
 ## v0.5.0 (2022-01-29)
 
 - Use [`primal`](https://crates.io/crates/primal) in `is_gaussian_prime` algorithm.
