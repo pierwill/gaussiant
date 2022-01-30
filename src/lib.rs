@@ -17,6 +17,7 @@ doctest!("../README.md", readme);
 use std::fmt;
 
 use num_complex::Complex;
+use num_integer::Integer;
 use num_traits::{PrimInt, Signed};
 
 mod ops;
@@ -25,7 +26,7 @@ mod ops;
 ///
 /// [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
-pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
+pub struct GaussianInt<T: PrimInt + Integer>(pub Complex<T>);
 
 /// Creates a new [`GaussianInt`].
 ///
@@ -49,7 +50,7 @@ macro_rules! gaussint {
     };
 }
 
-impl<T: PrimInt> GaussianInt<T> {
+impl<T: PrimInt + Integer> GaussianInt<T> {
     #[allow(missing_docs)]
     pub fn new(r: T, i: T) -> Self {
         Self(Complex::new(r, i))
@@ -81,7 +82,7 @@ impl<T: PrimInt> GaussianInt<T> {
     }
 }
 
-impl<T: PrimInt + Signed> GaussianInt<T> {
+impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// Returns the complex conjugate.
     ///
     /// # Example
@@ -279,7 +280,7 @@ impl GaussianInt<isize> {
     }
 }
 
-impl<T: PrimInt + Signed> GaussianInt<T>
+impl<T: PrimInt + Integer + Signed> GaussianInt<T>
 where
     f64: From<T>,
 {
@@ -333,19 +334,19 @@ pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'stati
     primes.into_iter()
 }
 
-impl<T: PrimInt> From<Complex<T>> for GaussianInt<T> {
+impl<T: PrimInt + Integer> From<Complex<T>> for GaussianInt<T> {
     fn from(g: Complex<T>) -> Self {
         Self(g)
     }
 }
 
-impl<T: PrimInt> From<GaussianInt<T>> for isize {
+impl<T: PrimInt + Integer> From<GaussianInt<T>> for isize {
     fn from(g: GaussianInt<T>) -> Self {
         g.0.re.to_isize().unwrap()
     }
 }
 
-impl<T: PrimInt> fmt::Display for GaussianInt<T> {
+impl<T: PrimInt + Integer> fmt::Display for GaussianInt<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let zero = T::zero();
         if self.0.im < zero {
