@@ -2,8 +2,8 @@
 //! prime *q* and its conjugate, both of which are non-associated Gaussian primes
 //! (neither is the product of the other by a unit).
 //!
-//! We do a solver, and shows factorizations the same way
-//! [this page] does.
+//! This code finds such primes and their factors. For more information on the
+//! details, see [this page].
 //!
 //! [this page]: https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
 use gaussiant::{gaussint, GaussianInt};

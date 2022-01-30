@@ -2,8 +2,6 @@
 //!
 //! A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
 //!
-//! The centerpiece of this crate is a method to test for a [Gaussian prime].
-//!
 //! [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
 //! [Gaussian prime]: crate::GaussianInt#method.is_gaussian_prime
 #![deny(missing_docs)]
@@ -23,8 +21,9 @@ use num_traits::{PrimInt, Signed};
 
 mod ops;
 
-/// A Gaussian integer is a complex number
-/// whose real and imaginary parts are both integers.
+/// A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
+///
+/// [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
