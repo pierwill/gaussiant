@@ -23,9 +23,8 @@ use num_traits::{PrimInt, Signed};
 
 mod ops;
 
-/// A Gaussian integer.
-///
-/// This is a complex number whose real and imaginary parts are both integers.
+/// A Gaussian integer is a complex number
+/// whose real and imaginary parts are both integers.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt>(pub Complex<T>);
 
@@ -62,18 +61,19 @@ impl<T: PrimInt> GaussianInt<T> {
         Self(Complex::new(T::zero(), T::zero()))
     }
 
-    /// Given a Gaussian integer z0, called a modulus,
-    /// two Gaussian integers z1, z2 are *congruent modulo z0*,
-    /// if their difference is a multiple of z0.
+    /// Given a Gaussian integer z₀, called a *modulus*,
+    /// two Gaussian integers z₁, z₂ are *congruent modulo z₀*,
+    /// if their difference is a multiple of z₀.
     ///
     /// # Example
     ///
     /// ```
-    /// # use gaussiant::GaussianInt;
+    /// # use gaussiant::{GaussianInt, gaussint};
     /// # fn main() {
-    /// let c1 = GaussianInt::new(5, 0);
-    /// let c2 = GaussianInt::new(25, 0);
-    /// let c3 = GaussianInt::new(10, 0);
+    /// // 2 + 5i ≡ i mod 1 + 2i
+    /// let c1 = gaussint!(2, 5);
+    /// let c2 = gaussint!(0, 1);
+    /// let c3 = gaussint!(1, 2);
     /// assert!(c1.congruent(c2, c3));
     /// # }
     /// ```
@@ -306,8 +306,8 @@ where
     }
 }
 
-/// Returns an iterator of all Gaussian primesa + bi
-/// where |a|,|b| <= `n`.
+/// Returns an iterator of all Gaussian primes *a* + *b*i
+/// where |a|,|b| ≤ `n`.
 pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
     for a in -n..=n {
@@ -321,8 +321,8 @@ pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'sta
     primes.into_iter()
 }
 
-/// Returns an iterator of all Gaussian integers a + bi
-/// where |a|,|b| <= `n`.
+/// Returns an iterator of all Gaussian integers *a* + *b*i
+/// where |*a*|,|*b*| ≤ `n`.
 pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut primes: Vec<GaussianInt<_>> = vec![];
     for a in -n..=n {

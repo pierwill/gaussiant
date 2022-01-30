@@ -1,11 +1,11 @@
-/// If a rational prime *p* is congruent to 1 modulo 4, then it is the product of a Gaussian
-/// prime *q* and its conjugate, both of which are non-associated Gaussian primes
-/// (neither is the product of the other by a unit).
-///
-/// We do a solver, and shows factorizations the same way
-/// [this page] does.
-///
-/// [this page]: https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
+//! If a rational prime *p* is congruent to 1 modulo 4, then it is the product of a Gaussian
+//! prime *q* and its conjugate, both of which are non-associated Gaussian primes
+//! (neither is the product of the other by a unit).
+//!
+//! We do a solver, and shows factorizations the same way
+//! [this page] does.
+//!
+//! [this page]: https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
 use gaussiant::{gaussint, GaussianInt};
 use primal::Primes;
 
