@@ -23,7 +23,6 @@ fn main() {
         p.is_gaussian_prime()
     );
 }
-
 ```
 
 [`num_complex::Complex`]: https://docs.rs/num-complex/latest/num_complex/struct.Complex.html
