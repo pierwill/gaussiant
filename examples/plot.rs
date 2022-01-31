@@ -25,7 +25,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let primes = gaussiant::get_g_primes(N);
     for p in primes {
-        println!("{p}");
         let x = p.0.re;
         let y = p.0.im;
         plotting_area.draw_pixel((x, y), &BLACK)?;
