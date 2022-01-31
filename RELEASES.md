@@ -1,8 +1,8 @@
 ## unreleased
 
-- Add `mod-arith` example demonstrating properties of modular arithmetic.
 - Add `get_pos_g_ints` and `get_pos_g_primes` functions
   to return iterators of Gaussian integers and primes with positive real parts.
+- Add `mod-arith` example demonstrating properties of modular arithmetic.
 
 ## v0.6.0 (2022-01-31)
 
