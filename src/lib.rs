@@ -207,10 +207,10 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// ±1, ±*i*.
     pub fn units() -> [Self; 4] {
         [
-            Self::one(),
-            -Self::one(),
-            Self::new(T::zero(), T::one()),
-            Self::new(T::zero(), -T::one()),
+            Self::one(),                     //  1
+            -Self::one(),                    // -1
+            Self::new(T::zero(), T::one()),  //  i
+            Self::new(T::zero(), -T::one()), // -i
         ]
     }
 
