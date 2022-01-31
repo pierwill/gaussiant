@@ -1,6 +1,9 @@
 ## unreleased
 
 - Implement `num_traits::One` and `num_traits::Zero` for `GaussianInt`.
+- Require integer types of `Gaussiant<T>` to implement [`num_integer::Integer`].
+
+[`num_integer::Integer`]: https://docs.rs/num-integer/latest/num_integer/trait.Integer.html
 
 ## v0.5.1 (2022-01-30)
 
