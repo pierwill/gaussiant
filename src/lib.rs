@@ -235,9 +235,7 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
         }
         false
     }
-}
 
-impl GaussianInt<isize> {
     /// Tests whether a Gaussian integer is "even."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
@@ -252,7 +250,8 @@ impl GaussianInt<isize> {
     /// # }
     /// ```
     pub fn is_even(&self) -> bool {
-        self.congruent(Self::zero(), Self::new(1, 1))
+        let modulus = Self::new(T::one(), T::one());
+        self.congruent(Self::zero(), modulus)
     }
 
     /// Tests whether a Gaussian integer is "odd."
@@ -269,9 +268,8 @@ impl GaussianInt<isize> {
     /// # }
     /// ```
     pub fn is_odd(&self) -> bool {
-        let one = Self::new(1, 0);
-        self.congruent(one, Self::new(1, 1))
-        // *self % (Self::new(1, 1) + one) == Self::zero()
+        let modulus = Self::new(T::one(), T::one());
+        self.congruent(Self::one(), modulus)
     }
 }
 
