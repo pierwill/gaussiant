@@ -1,6 +1,7 @@
 ## unreleased
 
-- Add `get_pos_g_ints` function to return iterator of Gaussian integers with positive real parts.
+- Add `get_pos_g_ints` and `get_pos_g_primes` functions
+  to return iterators of Gaussian integers and primes with positive real parts.
 
 ## v0.6.0 (2022-01-31)
 
