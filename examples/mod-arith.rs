@@ -3,14 +3,14 @@
 use gaussiant::{gaussint, GaussianInt};
 
 fn main() {
-    let a = gaussint!(10);
-    let b = gaussint!(7);
-    let n = gaussint!(3);
+    let a = gaussint!(2, -1);
+    let b = gaussint!(2, 3);
+    let n = gaussint!(1, 1);
 
     let a1 = a;
     let b1 = b;
-    let a2 = gaussint!(1);
-    let b2 = gaussint!(4);
+    let a2 = gaussint!(4, 1);
+    let b2 = gaussint!(4, -3);
 
     // a1 ≡ b1 (mod n)
     assert!(a.congruent(b, n));
