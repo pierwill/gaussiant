@@ -409,4 +409,21 @@ mod tests {
         let z2 = gaussint!(-1, -2);
         assert!(!z1.is_associated(z2));
     }
+
+    #[test]
+    #[rustfmt::skip]
+    fn from_str() {
+        assert_eq!(GaussianInt::from_str("0").expect("oops"),    gaussint!(0, 0));
+        assert_eq!(GaussianInt::from_str("1").expect("oops"),    gaussint!(1, 0));
+        assert_eq!(GaussianInt::from_str("1+i").expect("oops"),  gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1-i").expect("oops"),  gaussint!(1,-1));
+        assert_eq!(GaussianInt::from_str("1+1i").expect("oops"), gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1-1i").expect("oops"), gaussint!(1,-1));
+        assert_eq!(GaussianInt::from_str("i+1").expect("oops"),  gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("i-1").expect("oops"),  gaussint!(-1,1));
+        assert_eq!(GaussianInt::from_str("1i+1").expect("oops"), gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1i-1").expect("oops"), gaussint!(-1,1));
+        assert_eq!(GaussianInt::from_str("i").expect("oops"),    gaussint!(0, 1));
+        assert_eq!(GaussianInt::from_str("-i").expect("oops"),   gaussint!(0,-1));
+    }
 }

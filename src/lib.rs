@@ -14,11 +14,11 @@ extern crate doc_comment;
 #[cfg(doctest)]
 doctest!("../README.md", readme);
 
-use std::fmt;
+use std::str::FromStr;
 
-use num_complex::Complex;
+use num_complex::{Complex, ParseComplexError};
 use num_integer::Integer;
-use num_traits::{One, PrimInt, Signed, Zero};
+use num_traits::{Num, One, PrimInt, Signed, Zero};
 
 mod ops;
 
@@ -386,8 +386,33 @@ impl<T: PrimInt + Integer> From<GaussianInt<T>> for isize {
     }
 }
 
-impl<T: PrimInt + Integer> fmt::Display for GaussianInt<T> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+impl<T> FromStr for GaussianInt<T>
+where
+    T: PrimInt + Integer + FromStr + Num + Clone,
+{
+    type Err = ParseComplexError<T::Err>;
+
+    /// Parses `a ± bi`, `ai ± b`, `a`, or `bi` where `a` and `b` are of type `T`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use std::str::FromStr;
+    /// # use gaussiant::{GaussianInt, gaussint};
+    /// # fn main() {
+    /// assert_eq!(
+    ///     GaussianInt::new(1, 1),
+    ///     GaussianInt::from_str("1+i").expect("parse problem!")
+    /// );
+    /// # }
+    /// ```
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(Self::from(Complex::from_str(s)?))
+    }
+}
+
+impl<T: PrimInt + Integer> std::fmt::Display for GaussianInt<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let zero = T::zero();
         if self.0.im < zero {
             write!(
