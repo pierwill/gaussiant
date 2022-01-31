@@ -43,3 +43,35 @@ impl<T: PrimInt + Integer + Signed> std::ops::Neg for GaussianInt<T> {
         Self::from(-self.0)
     }
 }
+
+// assignment ops
+
+impl<T: PrimInt + Integer> std::ops::AddAssign for GaussianInt<T> {
+    fn add_assign(&mut self, other: Self) {
+        *self = Self::from(self.0 + other.0)
+    }
+}
+
+impl<T: PrimInt + Integer> std::ops::SubAssign for GaussianInt<T> {
+    fn sub_assign(&mut self, other: Self) {
+        *self = Self::from(self.0 - other.0)
+    }
+}
+
+impl<T: PrimInt + Integer> std::ops::MulAssign for GaussianInt<T> {
+    fn mul_assign(&mut self, other: Self) {
+        *self = Self::from(self.0 * other.0)
+    }
+}
+
+impl<T: PrimInt + Integer> std::ops::DivAssign for GaussianInt<T> {
+    fn div_assign(&mut self, other: Self) {
+        *self = Self::from(self.0 / other.0)
+    }
+}
+
+impl<T: PrimInt + Integer> std::ops::RemAssign for GaussianInt<T> {
+    fn rem_assign(&mut self, other: Self) {
+        *self = Self::from(self.0 % other.0)
+    }
+}

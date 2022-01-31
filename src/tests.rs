@@ -40,6 +40,14 @@ mod tests {
     }
 
     #[test]
+    fn add_assign() {
+        let mut c1 = gaussint!(1, 1);
+        let c2 = gaussint!(2, 3);
+        c1 += c2;
+        assert_eq!(c1, gaussint!(3, 4));
+    }
+
+    #[test]
     fn subtraction() {
         let c1 = gaussint!(1, 1);
         let c2 = gaussint!(1, 1);
@@ -48,6 +56,14 @@ mod tests {
         let c1 = gaussint!(-15, 3);
         let c2 = gaussint!(8, 7);
         assert_eq!(c1 - c2, gaussint!(-23, -4));
+    }
+
+    #[test]
+    fn sub_assign() {
+        let mut c1 = gaussint!(1, 1);
+        let c2 = gaussint!(1, 1);
+        c1 -= c2;
+        assert_eq!(c1, gaussint!(0, 0));
     }
 
     #[test]
@@ -75,11 +91,28 @@ mod tests {
     }
 
     #[test]
+    fn mul_assign() {
+        let mut c1 = gaussint!(1, 1);
+        let c2 = gaussint!(1, -1);
+        c1 *= c2;
+        assert_eq!(c1, gaussint!(2, 0));
+    }
+
+    #[test]
     fn division() {
         // See https://projecteuler.net/problem=153
         let c1 = gaussint!(5, 0);
         let c2 = gaussint!(1, 2);
         assert_eq!(c1 / c2, gaussint!(1, -2));
+    }
+
+    #[test]
+    fn div_assign() {
+        // See https://projecteuler.net/problem=153
+        let mut c1 = gaussint!(5, 0);
+        let c2 = gaussint!(1, 2);
+        c1 /= c2;
+        assert_eq!(c1, gaussint!(1, -2));
     }
 
     #[test]
@@ -91,6 +124,15 @@ mod tests {
         let c1 = gaussint!(1, 2);
         let c2 = gaussint!(3, 4);
         assert!(c1 % c2 != GaussianInt::zero());
+    }
+
+    #[test]
+    fn rem_assign() {
+        // imaginary 🍪s
+        let mut jar = gaussint!(31);
+        let piles_of_cookies = gaussint!(4);
+        jar %= piles_of_cookies;
+        assert_eq!(jar, gaussint!(3));
     }
 
     #[test]
