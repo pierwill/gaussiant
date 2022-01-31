@@ -349,13 +349,13 @@ pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'sta
 /// where *a* is positive (or zero) and |*b*| ≤ `n`.
 pub fn get_pos_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let set = get_pos_g_ints(n);
-    let mut primes: Vec<GaussianInt<_>> = vec![];
+    let mut pos_primes: Vec<GaussianInt<_>> = vec![];
     for z in set {
         if z.is_gaussian_prime() {
-            primes.push(z);
+            pos_primes.push(z);
         }
     }
-    primes.into_iter()
+    pos_primes.into_iter()
 }
 
 impl<T: PrimInt + Integer> One for GaussianInt<T> {
