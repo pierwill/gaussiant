@@ -18,7 +18,7 @@ use std::fmt;
 
 use num_complex::Complex;
 use num_integer::Integer;
-use num_traits::{PrimInt, Signed};
+use num_traits::{One, PrimInt, Signed, Zero};
 
 mod ops;
 
@@ -54,11 +54,6 @@ impl<T: PrimInt + Integer> GaussianInt<T> {
     #[allow(missing_docs)]
     pub fn new(r: T, i: T) -> Self {
         Self(Complex::new(r, i))
-    }
-
-    /// Returns zero as a [`GaussianInt`].
-    pub fn zero() -> Self {
-        Self(Complex::new(T::zero(), T::zero()))
     }
 
     /// Given a Gaussian integer z₀, called a *modulus*,
@@ -332,6 +327,22 @@ pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'stati
         }
     }
     primes.into_iter()
+}
+
+impl<T: PrimInt + Integer> One for GaussianInt<T> {
+    fn one() -> Self {
+        GaussianInt::new(T::one(), T::zero())
+    }
+}
+
+impl<T: PrimInt + Integer> Zero for GaussianInt<T> {
+    fn zero() -> Self {
+        GaussianInt::new(T::zero(), T::zero())
+    }
+
+    fn is_zero(&self) -> bool {
+        *self == GaussianInt::zero()
+    }
 }
 
 impl<T: PrimInt + Integer> From<Complex<T>> for GaussianInt<T> {

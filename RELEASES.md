@@ -1,3 +1,7 @@
+## unreleased
+
+- Implement `num_traits::One` and `num_traits::Zero` for `GaussianInt`.
+
 ## v0.5.1 (2022-01-30)
 
 - Add new example to show basic plotting.
