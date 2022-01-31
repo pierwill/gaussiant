@@ -306,21 +306,6 @@ where
     }
 }
 
-/// Returns an iterator of all Gaussian primes *a* + *b*i
-/// where |a|,|b| ≤ `n`.
-pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
-    let mut primes: Vec<GaussianInt<_>> = vec![];
-    for a in -n..=n {
-        for b in -n..=n {
-            let z = GaussianInt::new(a, b);
-            if z.is_gaussian_prime() {
-                primes.push(z);
-            }
-        }
-    }
-    primes.into_iter()
-}
-
 /// Returns an iterator of all Gaussian integers *a* + *b*i
 /// where |*a*|,|*b*| ≤ `n`.
 pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
@@ -345,6 +330,32 @@ pub fn get_pos_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 's
         }
     }
     pos_integers.into_iter()
+}
+
+/// Returns an iterator of all Gaussian primes *a* + *b*i
+/// where |a|,|b| ≤ `n`.
+pub fn get_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+    let set = get_g_ints(n);
+    let mut primes: Vec<GaussianInt<_>> = vec![];
+    for z in set {
+        if z.is_gaussian_prime() {
+            primes.push(z);
+        }
+    }
+    primes.into_iter()
+}
+
+/// Returns an iterator of all Gaussian primes *a* + *b*i
+/// where *a* is positive (or zero) and |*b*| ≤ `n`.
+pub fn get_pos_g_primes(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
+    let set = get_pos_g_ints(n);
+    let mut primes: Vec<GaussianInt<_>> = vec![];
+    for z in set {
+        if z.is_gaussian_prime() {
+            primes.push(z);
+        }
+    }
+    primes.into_iter()
 }
 
 impl<T: PrimInt + Integer> One for GaussianInt<T> {
