@@ -43,3 +43,9 @@ impl<T: PrimInt + Integer + Signed> std::ops::Neg for GaussianInt<T> {
         Self::from(-self.0)
     }
 }
+
+// impl<T: PrimInt + Integer> std::ops::AddAssign for GaussianInt<T> {}
+// impl<T: PrimInt + Integer> std::ops::SubAssign for GaussianInt<T> {}
+// impl<T: PrimInt + Integer> std::ops::MulAssign for GaussianInt<T> {}
+// impl<T: PrimInt + Integer> std::ops::DivAssign for GaussianInt<T> {}
+// impl<T: PrimInt + Integer> std::ops::RemAssign for GaussianInt<T> {}
