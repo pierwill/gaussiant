@@ -1,9 +1,10 @@
 [package]
 edition = "2021"
 name = "gaussiant"
-version = "0.5.1"
+version = "0.6.0"
 description = "Gaussian integers"
-keywords = ["mathematics", "numerics"]
+keywords = ["mathematics", "numerics", "number-theory"]
+categories = ["mathematics"]
 repository = "https://github.com/pierwill/gaussiant"
 readme = "README.md"
 license = "MIT OR Apache-2.0"
