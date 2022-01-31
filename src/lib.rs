@@ -202,17 +202,15 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
 
         condition_1 || condition_2
     }
-}
 
-impl GaussianInt<isize> {
     /// Returns an array of the units of ℤ\[*i*\], the ring of Gaussian integers:
     /// ±1, ±*i*.
-    pub fn units() -> Vec<GaussianInt<isize>> {
-        vec![
-            Self::new(1, 0),
-            Self::new(-1, 0),
-            Self::new(0, 1),
-            Self::new(0, -1),
+    pub fn units() -> [Self; 4] {
+        [
+            Self::one(),
+            -Self::one(),
+            Self::new(T::zero(), T::one()),
+            Self::new(T::zero(), -T::one()),
         ]
     }
 
@@ -237,7 +235,9 @@ impl GaussianInt<isize> {
         }
         false
     }
+}
 
+impl GaussianInt<isize> {
     /// Tests whether a Gaussian integer is "even."
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
