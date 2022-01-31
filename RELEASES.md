@@ -1,3 +1,8 @@
+## unreleased
+
+- Add `get_pos_g_ints` and `get_pos_g_primes` functions
+  to return iterators of Gaussian integers and primes with positive real parts.
+
 ## v0.6.0 (2022-01-31)
 
 - Implement `num_traits::One` and `num_traits::Zero` for `GaussianInt`.
