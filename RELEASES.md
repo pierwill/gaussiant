@@ -1,3 +1,7 @@
+## unreleased
+
+- Add `mod-arith` example demonstrating properties of modular arithmetic.
+
 ## v0.6.0 (2022-01-31)
 
 - Implement `num_traits::One` and `num_traits::Zero` for `GaussianInt`.
