@@ -40,7 +40,7 @@ impl<T: PrimInt + Integer> Zero for GaussianInt<T> {
     }
 
     fn is_zero(&self) -> bool {
-        *self == GaussianInt::new(T::zero(), T::zero())
+        *self == GaussianInt::zero()
     }
 }
 
