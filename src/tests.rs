@@ -40,6 +40,14 @@ mod tests {
     }
 
     #[test]
+    fn add_assign() {
+        let mut c1 = gaussint!(1, 1);
+        let c2 = gaussint!(2, 3);
+        c1 += c2;
+        assert_eq!(c1, gaussint!(3, 4));
+    }
+
+    #[test]
     fn subtraction() {
         let c1 = gaussint!(1, 1);
         let c2 = gaussint!(1, 1);
