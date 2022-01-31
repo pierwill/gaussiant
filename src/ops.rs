@@ -5,14 +5,14 @@ use num_traits::{PrimInt, Signed};
 impl<T: PrimInt + Integer> std::ops::Add for GaussianInt<T> {
     type Output = Self;
     fn add(self, other: Self) -> Self::Output {
-        Self::new(self.0.re + other.0.re, self.0.im + other.0.im)
+        Self::from(self.0 + other.0)
     }
 }
 
 impl<T: PrimInt + Integer> std::ops::Sub for GaussianInt<T> {
     type Output = Self;
     fn sub(self, other: Self) -> Self::Output {
-        Self::new(self.0.re - other.0.re, self.0.im - other.0.im)
+        Self::from(self.0 - other.0)
     }
 }
 
