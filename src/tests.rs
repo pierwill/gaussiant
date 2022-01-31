@@ -413,11 +413,17 @@ mod tests {
     #[test]
     #[rustfmt::skip]
     fn from_str() {
-        assert_eq!(gaussint!(0),      GaussianInt::from_str("0")  .expect("oops"));
-        assert_eq!(gaussint!(1, 0),   GaussianInt::from_str("1")  .expect("oops"));
-        assert_eq!(gaussint!(1, 1),   GaussianInt::from_str("1+i").expect("oops"));
-        assert_eq!(gaussint!(1, -1),  GaussianInt::from_str("1-i").expect("oops"));
-        assert_eq!(gaussint!(0, 1),   GaussianInt::from_str("i")  .expect("oops"));
-        assert_eq!(gaussint!(0, -1),  GaussianInt::from_str("-i") .expect("oops"));
+        assert_eq!(GaussianInt::from_str("0").expect("oops"),    gaussint!(0, 0));
+        assert_eq!(GaussianInt::from_str("1").expect("oops"),    gaussint!(1, 0));
+        assert_eq!(GaussianInt::from_str("1+i").expect("oops"),  gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1-i").expect("oops"),  gaussint!(1,-1));
+        assert_eq!(GaussianInt::from_str("1+1i").expect("oops"), gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1-1i").expect("oops"), gaussint!(1,-1));
+        assert_eq!(GaussianInt::from_str("i+1").expect("oops"),  gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("i-1").expect("oops"),  gaussint!(-1,1));
+        assert_eq!(GaussianInt::from_str("1i+1").expect("oops"), gaussint!(1, 1));
+        assert_eq!(GaussianInt::from_str("1i-1").expect("oops"), gaussint!(-1,1));
+        assert_eq!(GaussianInt::from_str("i").expect("oops"),    gaussint!(0, 1));
+        assert_eq!(GaussianInt::from_str("-i").expect("oops"),   gaussint!(0,-1));
     }
 }
