@@ -346,8 +346,8 @@ impl<T: PrimInt + Integer> Zero for GaussianInt<T> {
 }
 
 impl<T: PrimInt + Integer> From<Complex<T>> for GaussianInt<T> {
-    fn from(g: Complex<T>) -> Self {
-        Self(g)
+    fn from(z: Complex<T>) -> Self {
+        Self(z)
     }
 }
 
