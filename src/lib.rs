@@ -203,8 +203,9 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
         condition_1 || condition_2
     }
 
-    /// Returns an array of the units of ℤ\[*i*\], the ring of Gaussian integers:
-    /// ±1, ±*i*.
+    /// Returns an array of the units of ℤ\[*i*\], the ring of Gaussian integers.
+    ///
+    /// The units are 1, -1, *i*, -*i*.
     pub fn units() -> [Self; 4] {
         [
             Self::one(),                     //  1
@@ -238,6 +239,8 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
 
     /// Tests whether a Gaussian integer is "even."
     ///
+    /// A Gaussian integer *z* is "even" if *z* ≡ 0 mod 1+*i*.
+    ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
     ///
     /// # Example
@@ -251,10 +254,13 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// ```
     pub fn is_even(&self) -> bool {
         let modulus = Self::new(T::one(), T::one());
+        // self ≡ 0 mod 1+i
         self.congruent(Self::zero(), modulus)
     }
 
     /// Tests whether a Gaussian integer is "odd."
+    ///
+    /// A Gaussian integer *z* is "odd" if *z* ≡ 1 mod 1+*i*.
     ///
     /// See <https://en.wikipedia.org/wiki/Gaussian_integer#Examples>.
     ///
@@ -269,6 +275,7 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// ```
     pub fn is_odd(&self) -> bool {
         let modulus = Self::new(T::one(), T::one());
+        // self ≡ 1 mod 1+i
         self.congruent(Self::one(), modulus)
     }
 }
