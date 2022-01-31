@@ -272,6 +272,7 @@ version = "0.5.1"
 dependencies = [
  "doc-comment",
  "num-complex",
+ "num-integer",
  "num-traits",
  "plotters",
  "primal",
