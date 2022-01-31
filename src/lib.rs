@@ -28,22 +28,6 @@ mod ops;
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt + Integer>(pub Complex<T>);
 
-impl<T: PrimInt + Integer> One for GaussianInt<T> {
-    fn one() -> Self {
-        GaussianInt::new(T::one(), T::zero())
-    }
-}
-
-impl<T: PrimInt + Integer> Zero for GaussianInt<T> {
-    fn zero() -> Self {
-        GaussianInt::new(T::zero(), T::zero())
-    }
-
-    fn is_zero(&self) -> bool {
-        *self == GaussianInt::zero()
-    }
-}
-
 /// Creates a new [`GaussianInt`].
 ///
 /// # Example
@@ -343,6 +327,22 @@ pub fn get_g_ints(n: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'stati
         }
     }
     primes.into_iter()
+}
+
+impl<T: PrimInt + Integer> One for GaussianInt<T> {
+    fn one() -> Self {
+        GaussianInt::new(T::one(), T::zero())
+    }
+}
+
+impl<T: PrimInt + Integer> Zero for GaussianInt<T> {
+    fn zero() -> Self {
+        GaussianInt::new(T::zero(), T::zero())
+    }
+
+    fn is_zero(&self) -> bool {
+        *self == GaussianInt::zero()
+    }
 }
 
 impl<T: PrimInt + Integer> From<Complex<T>> for GaussianInt<T> {
