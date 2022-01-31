@@ -1,6 +1,7 @@
 //! See https://projecteuler.net/problem=153
 
 use gaussiant::GaussianInt;
+use num_traits::Zero;
 
 fn main() {
     let n = 100;
