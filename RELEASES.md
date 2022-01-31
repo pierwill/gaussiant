@@ -2,7 +2,7 @@
 
 - Implement `num_traits::One` and `num_traits::Zero` for `GaussianInt`.
 - Require integer types of `Gaussiant<T>` to implement [`num_integer::Integer`].
-- Implement assignment operators in [`num_traits::NumAssignOps`]
+- Implement assignment operators in [`num_traits::NumAssignOps`].
 
 [`num_integer::Integer`]: https://docs.rs/num-integer/latest/num_integer/trait.Integer.html
 [`num_traits::NumAssignOps`]: https://docs.rs/num-traits/latest/num_traits/trait.NumAssignOps.html
