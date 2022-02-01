@@ -107,8 +107,7 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     pub fn norm(&self) -> usize {
         let a = self.0.re;
         let b = self.0.im;
-        let sum_of_squares = T::pow(a, 2) + T::pow(b, 2);
-        sum_of_squares.to_usize().unwrap()
+        (T::pow(a, 2) + T::pow(b, 2)).to_usize().unwrap()
     }
 
     /// Returns `true` if `self` divides `other`.
