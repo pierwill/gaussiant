@@ -57,7 +57,7 @@ impl<T: PrimInt + Integer> GaussianInt<T> {
     /// # use gaussiant::GaussianInt;
     /// # fn main() {
     /// // 𝑖
-    /// let square_root_of_negative_one = GaussianInt(0, 1);
+    /// let square_root_of_negative_one = GaussianInt::new(0, 1);
     /// # }
     /// ```
     pub fn new(r: T, i: T) -> Self {
