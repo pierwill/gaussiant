@@ -101,11 +101,14 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// # use gaussiant::GaussianInt;
     /// # fn main() {
     /// let z = GaussianInt::new(2, 7);
-    /// assert_eq!(z.norm(), GaussianInt::new(53, 0));
+    /// assert_eq!(z.norm(), 53);
     /// # }
     /// ```
-    pub fn norm(&self) -> Self {
-        *self * self.conj()
+    pub fn norm(&self) -> usize {
+        let a = self.0.re;
+        let b = self.0.im;
+        let sum_of_squares = T::pow(a, 2) + T::pow(b, 2);
+        sum_of_squares.to_usize().unwrap()
     }
 
     /// Returns `true` if `self` divides `other`.

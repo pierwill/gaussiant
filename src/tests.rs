@@ -69,10 +69,10 @@ mod tests {
     #[test]
     fn norm() {
         let c = gaussint!(1, 1);
-        assert_eq!(c.norm(), gaussint!(2, 0));
+        assert_eq!(c.norm(), 2);
 
         let c = gaussint!(4, 5);
-        assert_eq!(c.norm(), gaussint!(41, 0));
+        assert_eq!(c.norm(), 41);
     }
 
     #[test]
