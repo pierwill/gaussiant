@@ -74,10 +74,10 @@ impl<T: PrimInt + Integer> GaussianInt<T> {
     /// # use gaussiant::{GaussianInt, gaussint};
     /// # fn main() {
     /// // 2 + 5i ≡ i mod 1 + 2i
-    /// let c1 = gaussint!(2, 5);
-    /// let c2 = gaussint!(0, 1);
-    /// let c3 = gaussint!(1, 2);
-    /// assert!(c1.congruent(c2, c3));
+    /// let z1 = gaussint!(2, 5);
+    /// let z2 = gaussint!(0, 1);
+    /// let z3 = gaussint!(1, 2);
+    /// assert!(z1.congruent(z2, z3));
     /// # }
     /// ```
     pub fn congruent(&self, other: Self, modulus: Self) -> bool {
@@ -125,9 +125,9 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     /// ```
     /// # use gaussiant::GaussianInt;
     /// # fn main() {
-    /// let c1 = GaussianInt::new(5, 0);
-    /// let c2 = GaussianInt::new(1, 2);
-    /// assert!(c2.divides(c1));
+    /// let z1 = GaussianInt::new(5, 0);
+    /// let z2 = GaussianInt::new(1, 2);
+    /// assert!(z2.divides(z1));
     /// # }
     /// ```
     pub fn divides(&self, other: Self) -> bool {
@@ -302,9 +302,9 @@ where
     /// ```
     /// # use gaussiant::GaussianInt;
     /// # fn main() {
-    /// let c = GaussianInt::new(0, 1);
+    /// let z = GaussianInt::new(0, 1);
     /// // The polar form of *i* is (1, π/2).
-    /// assert_eq!(c.to_polar(), (1f64, std::f64::consts::PI / 2f64));
+    /// assert_eq!(z.to_polar(), (1_f64, std::f64::consts::PI / 2_f64));
     /// # }
     /// ```
     pub fn to_polar(&self) -> (f64, f64) {
