@@ -22,9 +22,7 @@ use num_traits::{Num, One, PrimInt, Signed, Zero};
 
 mod ops;
 
-/// A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
-///
-/// [Gaussian integer]: https://en.wikipedia.org/wiki/Gaussian_integer
+/// A Gaussian integer is a complex number whose real and imaginary parts are both integers.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct GaussianInt<T: PrimInt + Integer>(pub Complex<T>);
 
@@ -51,7 +49,17 @@ macro_rules! gaussint {
 }
 
 impl<T: PrimInt + Integer> GaussianInt<T> {
-    #[allow(missing_docs)]
+    /// Creates a new [`GaussianInt`].
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gaussiant::GaussianInt;
+    /// # fn main() {
+    /// // 𝑖
+    /// let square_root_of_negative_one = GaussianInt(0, 1);
+    /// # }
+    /// ```
     pub fn new(r: T, i: T) -> Self {
         Self(Complex::new(r, i))
     }
