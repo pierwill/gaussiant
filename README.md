@@ -1,7 +1,7 @@
-[![nightly](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml)
-[![stable](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml)
-[![documentation](https://docs.rs/gaussiant/badge.svg)](https://docs.rs/gaussiant)
 [![crate](https://img.shields.io/crates/v/gaussiant.svg)](https://crates.io/crates/gaussiant)
+[![documentation](https://docs.rs/gaussiant/badge.svg)](https://docs.rs/gaussiant)
+[![stable](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/stable.yml)
+[![nightly](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml/badge.svg)](https://github.com/pierwill/gaussiant/actions/workflows/nightly.yaml)
 
 A [Gaussian integer] is a complex number whose real and imaginary parts are both integers.
 
