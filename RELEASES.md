@@ -1,4 +1,4 @@
-## unreleased
+## v0.7.0 (2022-02-01)
 
 - Return a `usize` for the `norm()`, since it is always a positive real number.
 - Add `get_pos_g_ints` and `get_pos_g_primes` functions
