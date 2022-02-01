@@ -1,5 +1,6 @@
 ## unreleased
 
+- Return a `usize` for the `norm()`, since it is always a positive real number.
 - Add `get_pos_g_ints` and `get_pos_g_primes` functions
   to return iterators of Gaussian integers and primes with positive real parts.
 - Add `mod-arith` example demonstrating properties of modular arithmetic.
