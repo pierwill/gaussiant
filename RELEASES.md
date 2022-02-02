@@ -1,3 +1,7 @@
+## unreleased
+
+- Improve implementation of `Display` to handle e.g., "1-i" and "-i".
+
 ## v0.7.0 (2022-02-01)
 
 - Return a `usize` for the `norm()`, since it is always a positive real number.
