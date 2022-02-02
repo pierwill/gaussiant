@@ -412,6 +412,24 @@ mod tests {
 
     #[test]
     #[rustfmt::skip]
+    fn display() {
+        assert_eq!(format!("{}", gaussint!(0, 0)),    "0");
+        assert_eq!(format!("{}", gaussint!(1, 0)),    "1");
+        assert_eq!(format!("{}", gaussint!(-1, 0)),  "-1");
+        assert_eq!(format!("{}", gaussint!(0, -1)),  "-i");
+        assert_eq!(format!("{}", gaussint!(0, 1)),    "i");
+        assert_eq!(format!("{}", gaussint!(1, 1)),  "1+i");
+        assert_eq!(format!("{}", gaussint!(1, -1)), "1-i");
+        assert_eq!(format!("{}", gaussint!(2, 0)),    "2");
+        assert_eq!(format!("{}", gaussint!(-2, 0)),  "-2");
+        assert_eq!(format!("{}", gaussint!(2, 3)), "2+3i");
+        assert_eq!(format!("{}", gaussint!(2, -3)),"2-3i");
+        assert_eq!(format!("{}", gaussint!(2, 1)),  "2+i");
+        assert_eq!(format!("{}", gaussint!(2, -1)), "2-i");
+    }
+
+    #[test]
+    #[rustfmt::skip]
     fn from_str() {
         assert_eq!(GaussianInt::from_str("0").expect("oops"),    gaussint!(0, 0));
         assert_eq!(GaussianInt::from_str("1").expect("oops"),    gaussint!(1, 0));
