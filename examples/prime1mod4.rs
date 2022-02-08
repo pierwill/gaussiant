@@ -9,8 +9,10 @@
 use gaussiant::{gaussint, GaussianInt};
 use primal::Primes;
 
+const MAX: usize = 1000;
+
 fn main() {
-    let primes = Primes::all().take_while(|p| *p < 1000);
+    let primes = Primes::all().take_while(|p| *p < MAX);
 
     // convert `usize`d primes to `GaussianInt`s
     let primes: Vec<GaussianInt<isize>> = primes
@@ -27,7 +29,7 @@ fn main() {
     }
 
     // find q
-    let set: Vec<_> = gaussiant::get_g_ints(10).collect();
+    let set: Vec<_> = gaussiant::get_g_ints(MAX as isize).collect();
     for p in primes {
         for z in &set {
             let pos_real = z.0.re.is_positive();
