@@ -421,39 +421,59 @@ where
     }
 }
 
-impl<T: PrimInt + Integer + Signed + std::fmt::Display> std::fmt::Display for GaussianInt<T> {
+impl<T: PrimInt + Integer> std::fmt::Display for GaussianInt<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let zero = T::zero();
         let one = T::one();
-        match *self {
-            z if z == gaussint!(zero, zero) => return write!(f, "0"),
-            z if z == gaussint!(one, zero) => return write!(f, "1"),
-            z if z == gaussint!(-one, zero) => return write!(f, "-1"),
-            z if z == gaussint!(zero, one) => return write!(f, "i"),
-            z if z == gaussint!(zero, -one) => return write!(f, "-i"),
-            z if z == gaussint!(one, one) => return write!(f, "1+i"),
-            z if z == gaussint!(one, -one) => return write!(f, "1-i"),
-            z if z.0.im == zero => return write!(f, "{}", z.0.re),
-            z if z.0.im == one => return write!(f, "{}+i", z.0.re),
-            z if z.0.im == -one => return write!(f, "{}-i", z.0.re),
-            z if z.0.re == zero => return write!(f, "{}i", z.0.im),
-            z => {
-                if z.0.im < zero {
-                    write!(
-                        f,
-                        "{}{}i",
-                        z.0.re.to_isize().unwrap(),
-                        z.0.im.to_isize().unwrap()
-                    )
-                } else {
-                    write!(
-                        f,
-                        "{}+{}i",
-                        z.0.re.to_isize().unwrap(),
-                        z.0.im.to_isize().unwrap()
-                    )
-                }
+        let zero = T::zero();
+        // Can't do -one because self isn't necessarily `Signed`
+        let im_is_neg_one = self.0.im + one == zero;
+
+        // a
+        if self.0.im == zero {
+            return write!(f, "{}", self.0.re.to_isize().unwrap());
+        }
+        // i
+        if self.0.re == zero && self.0.im == T::one() {
+            return write!(f, "i");
+        }
+        // -i
+        if self.0.re == zero && im_is_neg_one {
+            return write!(f, "-i");
+        }
+        // bi
+        if self.0.re == zero && !im_is_neg_one {
+            return write!(f, "{}i", self.0.im.to_isize().unwrap());
+        }
+        // a+i
+        if self.0.im == one {
+            return write!(f, "{}+i", self.0.re.to_isize().unwrap());
+        }
+
+        if self.0.im < zero {
+            // -i
+            if self.0.re == zero && im_is_neg_one {
+                return write!(f, "-i");
             }
+            // a-i
+            if self.0.im + one == zero {
+                write!(f, "{}-i", self.0.re.to_isize().unwrap(),)
+            } else {
+                // a-bi
+                return write!(
+                    f,
+                    "{}{}i",
+                    self.0.re.to_isize().unwrap(),
+                    self.0.im.to_isize().unwrap()
+                );
+            }
+        } else {
+            // a+bi
+            return write!(
+                f,
+                "{}+{}i",
+                self.0.re.to_isize().unwrap(),
+                self.0.im.to_isize().unwrap()
+            );
         }
     }
 }
