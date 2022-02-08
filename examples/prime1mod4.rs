@@ -9,21 +9,14 @@ use primal::Primes;
 const MAX: usize = usize::pow(10, 5);
 
 fn main() {
-    let primes: Vec<usize> = Primes::all()
+    let primes_1_mod_4: Vec<usize> = Primes::all()
         .take_while(|p| *p < MAX)
         .into_iter()
-        .collect::<Vec<_>>();
-
-    // get primes p such that p ≡ 1 mod 4
-    let mut primes_1_mod_4: Vec<usize> = vec![];
-    for prime in primes.iter() {
-        if (prime - 1) % 4 == 0 {
-            primes_1_mod_4.push(*prime);
-        }
-    }
+        .filter(|p| (p - 1) % 4 == 0)
+        .collect();
 
     // find q
-    for p in primes {
+    for p in primes_1_mod_4 {
         let upper_bound = (p as f64).sqrt().floor() + 1.0;
         let set: Vec<_> = gaussiant::get_pos_g_ints(upper_bound as isize).collect();
 
