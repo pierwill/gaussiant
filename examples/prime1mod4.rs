@@ -6,39 +6,36 @@
 //! details, see [this page].
 //!
 //! [this page]: https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
-use gaussiant::{gaussint, GaussianInt};
+use gaussiant::GaussianInt;
 use primal::Primes;
 
-const MAX: usize = 1000;
+const MAX: usize = usize::pow(10, 5);
 
 fn main() {
-    let primes = Primes::all().take_while(|p| *p < MAX);
-
-    // convert `usize`d primes to `GaussianInt`s
-    let primes: Vec<GaussianInt<isize>> = primes
+    let primes: Vec<usize> = Primes::all()
+        .take_while(|p| *p < MAX)
         .into_iter()
-        .map(|p| gaussint!(p.try_into().unwrap()))
         .collect::<Vec<_>>();
 
-    // get rational primes p such that p ≡ 1 mod 4
-    let mut primes_1_mod_4: Vec<GaussianInt<isize>> = vec![];
+    // get primes p such that p ≡ 1 mod 4
+    let mut primes_1_mod_4: Vec<usize> = vec![];
     for prime in primes.iter() {
-        if prime.congruent(gaussint!(1), gaussint!(4)) {
+        if (prime - 1) % 4 == 0 {
             primes_1_mod_4.push(*prime);
         }
     }
 
     // find q
-    let set: Vec<_> = gaussiant::get_g_ints(MAX as isize).collect();
     for p in primes {
-        for z in &set {
-            let pos_real = z.0.re.is_positive();
-            let pos_im = z.0.im.is_positive();
-            let re_gt_im = z.0.re.abs() > z.0.im.abs();
-            let conj_non_asso = !z.is_associated(z.conj());
+        let upper_bound = (p as f64).sqrt().floor() + 1.0;
+        let set: Vec<_> = gaussiant::get_pos_g_ints(upper_bound as isize).collect();
 
-            let conditions = pos_real && pos_im && re_gt_im && conj_non_asso;
-            if p == *z * z.conj() && conditions {
+        for z in &set {
+            let conditions = !z.is_associated(z.conj())
+                && z.0.re.is_positive()
+                && z.0.im.is_positive()
+                && z.0.re.abs() > z.0.im.abs();
+            if GaussianInt::new(p as isize, 0) == *z * z.conj() && conditions {
                 println!("{p} = {z} * {}", z.conj());
             }
         }
