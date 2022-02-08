@@ -2,10 +2,7 @@
 //! prime *q* and its conjugate, both of which are non-associated Gaussian primes
 //! (neither is the product of the other by a unit).
 //!
-//! This code finds such primes and their factors. For more information on the
-//! details, see [this page].
-//!
-//! [this page]: https://en.wikipedia.org/wiki/Table_of_Gaussian_integer_factorizations
+//! This code finds such primes and their factors.
 use gaussiant::GaussianInt;
 use primal::Primes;
 
