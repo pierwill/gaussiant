@@ -1,4 +1,4 @@
-## unreleased
+## v0.8.0 (2022-02-09)
 
 - Improve implementation of `Display` to handle e.g., "1-i" and "-i".
 
