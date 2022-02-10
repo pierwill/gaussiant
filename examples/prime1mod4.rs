@@ -10,6 +10,7 @@
 //! cargo run --example prime1mod4 --release
 //! ```
 use gaussiant::GaussianInt;
+use num_integer::Integer;
 use primal::Primes;
 
 const MAX: usize = usize::pow(10, 6);
@@ -44,7 +45,9 @@ fn main() {
 fn get_possible_qs(l: isize, u: isize) -> impl Iterator<Item = GaussianInt<isize>> + 'static {
     let mut possible_zs: Vec<GaussianInt<_>> = vec![];
     for a in l..=u {
-        for b in 0..=u {
+        // Since q must be a Gaussian prime, a and b must have opposite parities.
+        let start = if a.is_even() { 1 } else { 0 };
+        for b in (start..u).step_by(2) {
             let z = GaussianInt::new(a, b);
             possible_zs.push(z);
         }
