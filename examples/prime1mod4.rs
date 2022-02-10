@@ -31,10 +31,7 @@ fn main() {
             get_possible_qs(lower_bound as isize, upper_bound as isize).collect();
 
         for z in &possible_qs {
-            let conditions = !z.is_associated(z.conj())
-                && z.0.re.is_positive()
-                && z.0.im.is_positive()
-                && z.0.re.abs() > z.0.im.abs();
+            let conditions = !z.is_associated(z.conj()) && z.0.re > z.0.im;
             if GaussianInt::new(p as isize, 0) == *z * z.conj() && conditions {
                 println!("{p} = {z} * {}", z.conj());
             }
