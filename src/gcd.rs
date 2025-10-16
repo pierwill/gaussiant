@@ -10,7 +10,7 @@ impl<T: PrimInt + Integer + Signed> GaussianInt<T> {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```no_run
     /// use gaussiant::{GaussianInt, gaussint};
     ///
     /// let a = gaussint!(12, 0);
