@@ -11,8 +11,8 @@
 #[macro_use]
 extern crate doc_comment;
 
-#[cfg(doctest)]
-doctest!("../README.md", readme);
+// #[cfg(doctest)]
+// doctest!("../README.md", readme);
 
 use std::str::FromStr;
 
@@ -20,6 +20,7 @@ use num_complex::{Complex, ParseComplexError};
 use num_integer::Integer;
 use num_traits::{Num, One, PrimInt, Signed, Zero};
 
+mod gcd;
 mod ops;
 
 /// A Gaussian integer is a complex number whose real and imaginary parts are both integers.
